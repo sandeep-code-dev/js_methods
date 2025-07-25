@@ -63,6 +63,14 @@ The original array `[1, 2, 3]` remains unchanged.
 
 ---
 
+## When NOT to use `map()`
+
+- **When you don't need a new array:** If your goal is simply to iterate over an array and perform side effects (like logging to the console, making an API call, or modifying elements _in place_), `forEach()` or a `for...of` loop might be more appropriate. `map()` is specifically designed to **return a new array**.
+- **When you want to filter elements:** If you want to select a subset of elements based on a condition, `filter()` is the right choice.
+- **When you want to reduce an array to a single value:** If you want to sum, average, or combine all elements into a single result, `reduce()` is what you need.
+
+In summary, `map()` is an indispensable tool in modern JavaScript development for transforming arrays into new arrays based on a given transformation function. Its non-mutating nature promotes cleaner and more functional programming styles.
+
 ## Examples
 
 #### 1\. Doubling Numbers
@@ -186,14 +194,6 @@ const originalArrayInCallback = letters.map((letter, index, arr) => {
 ```
 
 ---
-
-## When NOT to use `map()`
-
-- **When you don't need a new array:** If your goal is simply to iterate over an array and perform side effects (like logging to the console, making an API call, or modifying elements _in place_), `forEach()` or a `for...of` loop might be more appropriate. `map()` is specifically designed to **return a new array**.
-- **When you want to filter elements:** If you want to select a subset of elements based on a condition, `filter()` is the right choice.
-- **When you want to reduce an array to a single value:** If you want to sum, average, or combine all elements into a single result, `reduce()` is what you need.
-
-In summary, `map()` is an indispensable tool in modern JavaScript development for transforming arrays into new arrays based on a given transformation function. Its non-mutating nature promotes cleaner and more functional programming styles.
 
 ## Advance uses of `map()` method
 
