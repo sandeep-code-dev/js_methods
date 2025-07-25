@@ -1,3 +1,9 @@
+# Javascript `splice()` method
+
+Florin pop `splice()` method youtube link
+
+<https://www.youtube.com/watch?v=FFas8cMHVwg>
+
 The `splice()` method in JavaScript is a powerful and versatile array method used for **changing the contents of an array by removing or replacing existing elements and/or adding new elements in place.**
 
 Unlike `slice()`, which creates a new array, `splice()` **modifies the original array** (it's a mutable method). It also returns an array containing the deleted elements, if any.
