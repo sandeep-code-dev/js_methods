@@ -4,6 +4,8 @@ Florin pop youtube link of `map()` method
 
 <https://www.youtube.com/watch?v=P4RAFdZDn3M>
 
+#### It is a Iteration / Looping Methods (Higher-Order Functions)
+
 The `map()` method in JavaScript is a powerful and commonly used method for arrays. It creates a **new array** by calling a provided function on every element in the calling array. Here's a detailed explanation:
 
 ## Syntax

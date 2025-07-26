@@ -4,6 +4,8 @@ Florin pop youtube link
 
 <https://www.youtube.com/watch?v=SXb5LN_opbA>
 
+#### It is a Iteration / Looping Methods (Higher-Order Functions)
+
 The `forEach()` method in JavaScript is a fundamental array iteration method that allows you to execute a provided function once for each array element. It's a clean and readable way to loop through arrays, especially when you need to perform an action on each item without necessarily creating a new array (like `map()` or `filter()` do) or breaking out of the loop early (like a traditional `for` loop might).
 
 Here's a detailed explanation in Markdown format:

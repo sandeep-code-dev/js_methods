@@ -2,6 +2,8 @@
 
 Florin pop youtube filter tutorial link
 
+#### It is a Iteration / Looping Methods (Higher-Order Functions)
+
 <https://www.youtube.com/watch?v=mJGv12UHqXc&list=PLgBH1CvjOA62PBFIDq55-S6Beivje30A2&index=3>
 
 The `filter()` method in JavaScript is a higher-order array method that creates a new array containing all elements from the original array that satisfy a provided test condition. It does not modify the original array.
