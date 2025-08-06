@@ -43,15 +43,15 @@ These methods change the array they are called on.
 
 These methods return new arrays or values without changing the original array.
 
-1.  **`concat()`**: Used to merge two or more arrays. Returns a new array.
-2.  **`slice()`**: Returns a shallow copy of a portion of an array into a new array object selected from `start` to `end` (end not included).
-3.  **`indexOf()`**: Returns the first index at which a given element can be found in the array, or -1 if it is not present.
-4.  **`lastIndexOf()`**: Returns the last index at which a given element can be found in the array, or -1 if it is not present.
-5.  **`includes()`**: Determines whether an array includes a certain value among its entries, returning `true` or `false` as appropriate.
-6.  **`join()`**: Joins all elements of an array into a string.
-7.  **`toString()`**: Returns a string representing the specified array and its elements. (Often equivalent to `join(',')`)
-8.  **`toLocaleString()`**: Returns a string representing the elements of the array. Elements are converted to strings using their `toLocaleString` methods.
-9.  ✅ **`at()`** (ES2022): Takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item.
+1. ✅ **`concat()`**: Used to merge two or more arrays. Returns a new array.
+2. **`slice()`**: Returns a shallow copy of a portion of an array into a new array object selected from `start` to `end` (end not included).
+3. **`indexOf()`**: Returns the first index at which a given element can be found in the array, or -1 if it is not present.
+4. **`lastIndexOf()`**: Returns the last index at which a given element can be found in the array, or -1 if it is not present.
+5. **`includes()`**: Determines whether an array includes a certain value among its entries, returning `true` or `false` as appropriate.
+6. **`join()`**: Joins all elements of an array into a string.
+7. **`toString()`**: Returns a string representing the specified array and its elements. (Often equivalent to `join(',')`)
+8. **`toLocaleString()`**: Returns a string representing the elements of the array. Elements are converted to strings using their `toLocaleString` methods.
+9. ✅ **`at()`** (ES2022): Takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item.
 10. **`flat()`** (ES2019): Creates a new array with all sub-array elements recursively concatenated into it up to a specified depth.
 
 #### IV. Non-Mutating Array Methods (ES2023 Additions)
