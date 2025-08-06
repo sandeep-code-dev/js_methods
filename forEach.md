@@ -112,7 +112,7 @@ colors.forEach((color, index, arr) => {
 // Element at index 2: blue. The full array is: red,green,blue
 ```
 
-#### 4\. Important Characteristics and Considerations
+#### Example 4. Important Characteristics and Considerations
 
 - **No Return Value**: `forEach()` always returns `undefined`. It's used for side effects (e.g., logging, updating DOM, pushing to another array).
 
@@ -146,7 +146,6 @@ colors.forEach((color, index, arr) => {
   ```
 
 - **Modifying the Array During Iteration**:
-
   - If elements are added to the array after `forEach()` begins, they will not be visited by the `callback` function.
   - If elements are removed or changed, they might be skipped or visited multiple times, or the original index might be shifted. It's generally best to avoid modifying the array being iterated over during `forEach()`.
 
