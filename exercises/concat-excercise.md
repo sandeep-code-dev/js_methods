@@ -160,16 +160,20 @@ const prices = [10.5, 20.0, 5.25];
 2.  **Applying a Function to Each Element (Without Returning a New Array):**
     If you have a function that performs an action and you want to apply it to every element.
 
-    ```javascript
-    function processUserData(user) {
-      console.log(`Processing user: ${user.name}, ID: ${user.id}`);
-      // Simulate sending data to an API for each user
-      // sendToAPI(user);
-    }
+        ```javascript
+        function processUserData(user) {
+          console.log(`Processing user: ${user.name}, ID: ${user.id}`);
+          // Simulate sending data to an API for each user
+          // sendToAPI(user);
+        }
 
-    const users = [
-      { id: 1, name: "Alice" },
-      { id: 2, name: "Bob" },
-    ];
-    users.forEach(processUserData);
-    ```
+        const users = [
+          { id: 1, name: "Alice" },
+          { id: 2, name: "Bob" },
+        ];
+        users.forEach(processUserData);
+        ```
+
+    > [!WARNING]
+    > **2. Synchronous Asynchronous Operations (Anti-Pattern Warning):
+    > While `forEach` can _contain_ asynchronous operations, it does **not\*\* wait for them to complete. This is a common pitfall. If you need to perform sequential async operations, use `for...of` with `await`.

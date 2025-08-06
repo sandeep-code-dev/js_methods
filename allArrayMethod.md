@@ -12,7 +12,7 @@ Here's a comprehensive list of the most common and important JavaScript Array me
 
 These methods take a callback function that is executed for each element.
 
-1.  **`forEach()`**: Executes a provided function once for each array element. (Doesn't return a new array)
+1.  ✅ **`forEach()`**: Executes a provided function once for each array element. (Doesn't return a new array)
 2.  **`map()`**: Creates a new array with the results of calling a provided function on every element.
 3.  **`filter()`**: Creates a new array with all elements that pass the test implemented by the provided function.
 4.  **`reduce()`**: Applies a function against an accumulator and each element (from left to right) to reduce it to a single value.
@@ -51,7 +51,7 @@ These methods return new arrays or values without changing the original array.
 6.  **`join()`**: Joins all elements of an array into a string.
 7.  **`toString()`**: Returns a string representing the specified array and its elements. (Often equivalent to `join(',')`)
 8.  **`toLocaleString()`**: Returns a string representing the elements of the array. Elements are converted to strings using their `toLocaleString` methods.
-9.  **`at()`** (ES2022): Takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item.
+9.  ✅ **`at()`** (ES2022): Takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item.
 10. **`flat()`** (ES2019): Creates a new array with all sub-array elements recursively concatenated into it up to a specified depth.
 
 #### IV. Non-Mutating Array Methods (ES2023 Additions)
