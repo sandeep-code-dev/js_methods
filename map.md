@@ -65,14 +65,6 @@ The original array `[1, 2, 3]` remains unchanged.
 
 ---
 
-## When NOT to use `map()`
-
-- **When you don't need a new array:** If your goal is simply to iterate over an array and perform side effects (like logging to the console, making an API call, or modifying elements _in place_), `forEach()` or a `for...of` loop might be more appropriate. `map()` is specifically designed to **return a new array**.
-- **When you want to filter elements:** If you want to select a subset of elements based on a condition, `filter()` is the right choice.
-- **When you want to reduce an array to a single value:** If you want to sum, average, or combine all elements into a single result, `reduce()` is what you need.
-
-In summary, `map()` is an indispensable tool in modern JavaScript development for transforming arrays into new arrays based on a given transformation function. Its non-mutating nature promotes cleaner and more functional programming styles.
-
 ## Examples
 
 #### 1\. Doubling Numbers
@@ -165,14 +157,19 @@ const products = [
 ];
 
 const totalProductsValue = products.map((item) => item.price * item.count);
-
 console.log(totalProductsValue);
+// ouput [ 5000, 7500, 5000 ]
 
 const totalProductsValueWithName = products.map((item) => ({
   name: item.name,
   totalValue: item.price * item.count,
 }));
 console.log(totalProductsValueWithName);
+//  output [
+//  { name: 'laptop', totalValue: 5000 },
+//  { name: 'desktop', totalValue: 7500 },
+//  { name: 'phone', totalValue: 5000 }
+//   ]
 ```
 
 #### 5\. Using `index` and `array` arguments
@@ -192,7 +189,14 @@ const originalArrayInCallback = letters.map((letter, index, arr) => {
   );
   return letter.toUpperCase();
 });
+console.log(originalArrayInCallback);
 // This will log the original array at each iteration within the callback
+// Output
+// [ '0: a', '1: b', '2: c' ]
+// Current element: a, Index: 0, Original array: a,b,c
+// Current element: b, Index: 1, Original array: a,b,c
+// Current element: c, Index: 2, Original array: a,b,c
+// output: [ 'A', 'B', 'C' ]
 ```
 
 ---
@@ -452,4 +456,11 @@ Output: (assuming Jan 1st, 2025 is a Wednesday)
 */
 ```
 
+## When NOT to use `map()`
+
+- **When you don't need a new array:** If your goal is simply to iterate over an array and perform side effects (like logging to the console, making an API call, or modifying elements _in place_), `forEach()` or a `for...of` loop might be more appropriate. `map()` is specifically designed to **return a new array**.
+- **When you want to filter elements:** If you want to select a subset of elements based on a condition, `filter()` is the right choice.
+- **When you want to reduce an array to a single value:** If you want to sum, average, or combine all elements into a single result, `reduce()` is what you need.
+
+In summary, `map()` is an indispensable tool in modern JavaScript development for transforming arrays into new arrays based on a given transformation function. Its non-mutating nature promotes cleaner and more functional programming styles.
 These examples highlight how **`map()`** serves as a fundamental building block for data manipulation and transformation in JavaScript, often working in concert with other methods and language features to solve complex problems elegantly.

@@ -52,8 +52,8 @@ const original = [1, 2, { id: 3 }];
 ```javascript
 const fruits = ["apple", "banana", "cherry", "date"];
 // access elements at position 0 and 2
-// output is 0 is apple
-// output is 0 is cherry
+// output: 0 is apple
+// output: 2 is cherry
 ```
 
 ### Accessing Elements from the End (Negative Index - The Main Use Case):\*\*
@@ -174,6 +174,108 @@ const prices = [10.5, 20.0, 5.25];
         users.forEach(processUserData);
         ```
 
-    > [!WARNING]
-    > **2. Synchronous Asynchronous Operations (Anti-Pattern Warning):
-    > While `forEach` can _contain_ asynchronous operations, it does **not\*\* wait for them to complete. This is a common pitfall. If you need to perform sequential async operations, use `for...of` with `await`.
+    **2. Synchronous Asynchronous Operations (Anti-Pattern Warning):
+    While `forEach` can _contain_ asynchronous operations, it does **not\*\* wait for them to complete. This is a common pitfall. If you need to perform sequential async operations, use `for...of` with `await`.
+
+### Map Method
+
+#### 1\. Doubling Numbers
+
+```javascript
+// Double the numbers below with map method of js.
+const numbers = [1, 2, 3, 4, 5];
+
+// Square root of numbers below with map method of js.
+// Output: [1, 2, 3, 4, 5] (original array unchanged)
+// Output: [2, 4, 6, 8, 10] (new array)
+// Output: [ 1, 4, 9, 16, 25 ]
+```
+
+#### 3\. Extracting Properties from Objects
+
+```javascript
+const users = [
+  { id: 1, name: "Alice", age: 30 },
+  { id: 2, name: "Bob", age: 24 },
+  { id: 3, name: "Charlie", age: 35 },
+];
+
+console.log(userNames); // Output: ['Alice', 'Bob', 'Charlie']
+console.log(userAges); // Output: [30, 24, 35]
+```
+
+#### 4\. Formatting Data
+
+```javascript
+// format the date to get the output.
+const products = [
+  { name: "Laptop", price: 1200 },
+  { name: "Mouse", price: 25 },
+  { name: "Keyboard", price: 75 },
+];
+
+/*
+Output:
+[
+  { name: 'LAPTOP', price: '$1200.00' },
+  { name: 'MOUSE', price: '$25.00' },
+  { name: 'KEYBOARD', price: '$75.00' }
+]
+*/
+```
+
+#### 5\. Formatting data to find the total value of particular product using `map()` method
+
+```js
+const products = [
+  {
+    name: "laptop",
+    price: 1000,
+    count: 5,
+  },
+  {
+    name: "desktop",
+    price: 1500,
+    count: 5,
+  },
+  {
+    name: "phone",
+    price: 500,
+    count: 10,
+  },
+];
+
+// Ouput [ 5000, 7500, 5000 ]
+
+//  Output [
+//  { name: 'laptop', totalValue: 5000 },
+//  { name: 'desktop', totalValue: 7500 },
+//  { name: 'phone', totalValue: 5000 }
+//   ]
+```
+
+#### 5\. Using `index` and `array` arguments
+
+```javascript
+const letters = ["a", "b", "c"];
+
+const indexedLetters = letters.map((letter, index) => {
+  return `${index}: ${letter}`;
+});
+
+console.log(indexedLetters); // Output: ['0: a', '1: b', '2: c']
+
+const originalArrayInCallback = letters.map((letter, index, arr) => {
+  console.log(
+    `Current element: ${letter}, Index: ${index}, Original array: ${arr}`,
+  );
+  return letter.toUpperCase();
+});
+// This will log the original array at each iteration within the callback
+// Output
+// [ '0: a', '1: b', '2: c' ]
+// Current element: a, Index: 0, Original array: a,b,c
+// Current element: b, Index: 1, Original array: a,b,c
+// Current element: c, Index: 2, Original array: a,b,c
+// output: [ 'A', 'B', 'C' ]
+```
