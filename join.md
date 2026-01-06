@@ -39,7 +39,8 @@ Imagine `join()` takes all the items in your array, puts them in a line, and the
 const fruits = ["apple", "banana", "cherry"];
 
 const fruitString = fruits.join();
-console.log(fruitString); // Output: "apple,banana,cherry"
+console.log(fruitString);
+// Output: "apple,banana,cherry"
 ```
 
 **2. Joining with a Custom Separator:**
@@ -48,10 +49,12 @@ console.log(fruitString); // Output: "apple,banana,cherry"
 const words = ["Hello", "world", "JavaScript"];
 
 const sentenceSpace = words.join(" ");
-console.log(sentenceSpace); // Output: "Hello world JavaScript"
+console.log(sentenceSpace);
+// Output: "Hello world JavaScript"
 
 const sentenceHyphen = words.join("-");
-console.log(sentenceHyphen); // Output: "Hello-world-JavaScript"
+console.log(sentenceHyphen);
+// Output: "Hello-world-JavaScript"
 ```
 
 **3. Joining Without a Separator (Empty String):**
@@ -60,7 +63,8 @@ console.log(sentenceHyphen); // Output: "Hello-world-JavaScript"
 const chars = ["J", "a", "v", "a", "S", "c", "r", "i", "p", "t"];
 
 const fullWord = chars.join("");
-console.log(fullWord); // Output: "JavaScript"
+console.log(fullWord);
+// Output: "JavaScript"
 ```
 
 **4. Handling `null` and `undefined` Elements:**
@@ -69,15 +73,18 @@ console.log(fullWord); // Output: "JavaScript"
 const mixedData = ["Name", null, "is", undefined, "Alice"];
 
 const resultString = mixedData.join(" ");
-console.log(resultString); // Output: "Name is Alice" (null and undefined become empty strings)
+console.log(resultString);
+// Output: "Name is Alice" (null and undefined become empty strings)
 ```
 
 **5. Joining an Empty Array:**
 
 ```javascript
 const emptyArray = [];
+
 const emptyString = emptyArray.join("-");
-console.log(emptyString); // Output: ""
+console.log(emptyString);
+// Output: ""
 ```
 
 ---
@@ -133,7 +140,6 @@ console.log(emptyString); // Output: ""
 
 1.  **When Working with Objects in an Array (Without Transformation):**
     If your array contains objects, `join()` will convert each object to its string representation (typically `[object Object]`), which is rarely useful without first transforming the objects into strings using `map()`.
-
     - **Use `map()` first to extract stringable properties:**
 
       ```javascript
@@ -153,7 +159,6 @@ console.log(emptyString); // Output: ""
 
 2.  **When Dealing with Complex URL/Query String Encoding:**
     For robust URL or query string construction, just `join()` is insufficient. You'll need to use `encodeURIComponent()` for each individual parameter to handle special characters correctly.
-
     - **Use `encodeURIComponent()` for URL safety:**
 
       ```javascript

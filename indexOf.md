@@ -25,15 +25,13 @@ str.indexOf(searchString, position);
 #### Parameters:
 
 - **For Arrays:**
-
-  - `searchElement` (Required): The element to search for.
+  - `searchElement` (Required): The element to search for. The searchElement is a required parameter. This is the value you're looking for within the array. It performs a strict equality comparison (===), so the type and value must match. For example, [1, '2', 3].indexOf('1') will return -1 because the number 1 is not strictly equal to the string '1
   - `fromIndex` (Optional): The index at which to start the search.
     - Defaults to `0`.
     - If `fromIndex` is greater than or equal to the array's length, `-1` is returned, meaning the array will not be searched.
     - If `fromIndex` is negative, it is used as an offset from the end of the array (e.g., `-1` means search from the last element, `-2` from the second-to-last, etc.). If the calculated index is less than 0, the entire array will be searched.
 
 - **For Strings:**
-
   - `searchString` (Required): The string to search for within the calling string.
   - `position` (Optional): The index at which to begin searching the string.
     - Defaults to `0`.
@@ -145,7 +143,6 @@ console.log(mixedArray.indexOf(undefined)); // Output: 3
 
 1.  **When You Only Need to Check for Existence (Not Position):**
     `includes()` is more semantic, concise, and handles `NaN` correctly for simple existence checks in arrays.
-
     - **Use `includes()` instead for arrays:**
 
       ```javascript
@@ -162,7 +159,6 @@ console.log(mixedArray.indexOf(undefined)); // Output: 3
 
 2.  **When Searching for Objects (by content/property) in an Array:**
     `indexOf()` will only find the exact same _object instance_ (`===`). It will not find an object with identical property values if it's a different instance.
-
     - **Use `findIndex()` or `find()` with a callback for object property matching:**
 
       ```javascript
@@ -182,7 +178,6 @@ console.log(mixedArray.indexOf(undefined)); // Output: 3
 
 3.  **When Searching with Regular Expressions:**
     `indexOf()` only accepts literal strings as `searchString`. For pattern matching using regular expressions, use `String.prototype.search()` or `String.prototype.match()`.
-
     - **Use `search()` or `match()` for regex:**
 
       ```javascript

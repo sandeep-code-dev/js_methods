@@ -147,7 +147,8 @@ console.log(temperaturesFahrenheit); // Output: [32, 50, 68, 86]
       .filter((student) => student.passed && student.score > 80)
       .map((student) => student.name);
 
-    console.log(topPerformers); // Output: ['Alice', 'Charlie']
+    console.log(topPerformers);
+    //  Output: ['Alice', 'Charlie']
     ```
 
 ---
