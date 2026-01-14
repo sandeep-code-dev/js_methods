@@ -258,6 +258,8 @@ console.log(seniorActiveEmployeeNames); // Output: ['Charlie Brown']
 
 ## 2\. Flattening Nested Arrays (One Level Deep)
 
+<!-- NOTE  do when flat is learnt.-->
+
 While **`flatMap()`** is specifically designed for this, you can achieve a similar effect for one level of nesting using **`map()`** followed by **`flat(1)`** (or `flat()` without an argument as it defaults to `1`).
 
 **Example:**
@@ -323,6 +325,8 @@ const productDivs = products.map((product) => {
 
 ## 4\. Creating Lookup Maps/Objects from Arrays
 
+<!-- NOTE practice when Object is done -->
+
 While **`reduce()`** is often better for creating a single object from an array, you can use **`map()`** as an intermediate step to prepare data before combining it, or sometimes, you might just want an array of key-value pairs that you then convert to an object.
 
 **Example: Preparing for an `Object.fromEntries()` conversion**
@@ -366,6 +370,8 @@ The **`map()`** approach followed by **`Object.fromEntries()`** can be more read
 ## 5\. Type Coercion / Data Cleaning
 
 **`map()`** can be used to ensure all elements in an array conform to a specific type or format.
+
+<!-- NOTE come back when learnt `Number` -->
 
 **Example: Converting String Numbers to Actual Numbers**
 
@@ -424,6 +430,8 @@ console.log(multipliedValues); // Output: [10, 20, 30]
 ## 7\. Creating a Sequence or Range (Combined with `Array.from()`)
 
 This isn't **`map()`** on its own, but **`map()`** is often used with **`Array.from()`** to generate sequences of numbers or items.
+
+<!-- NOTE comeback when learnt `Array.from()` -->
 
 **Example: Creating a range of numbers**
 

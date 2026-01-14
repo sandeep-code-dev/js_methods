@@ -134,6 +134,19 @@ function reverseString(str) {
 console.log(reverseString("hello")); // Output: "olleh"
 ```
 
+✦ The reason str.length and str.length - 1 provide the same answer and don't add a space is due to how String.prototype.substring() works.
+
+When i is str.length (e.g., 5 for "hello"), str.substring(i, i + 1) becomes str.substring(5, 6).
+According to JavaScript's substring behavior, if indexStart is equal to the string's length, an empty string is returned. It does not return a space character
+or cause an error.
+
+So, for i = str.length, an empty string "" is appended to reversed, which has no effect on the final output. The actual characters "o", "l", "l", "e", "h" are
+appended when i is str.length - 1 down to 0.
+
+If you start i at str.length - 1, the first character appended is "o" (from str.substring(4, 5)), and the result is the same.
+
+The console.log(working); line would likely cause a ReferenceError if working is not defined.
+
 ### 5\. Sanitizing Input
 
 This example removes leading and trailing spaces from an input string, similar to the `trim()` method.

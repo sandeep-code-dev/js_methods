@@ -189,7 +189,6 @@ console.log(mixedArray.findIndex(Number.isNaN)); // Output: 2 (correctly finds N
 
 2.  **When You Only Need to Check for Existence (Not the Index):**
     If you just need a boolean indicating if _any_ element satisfies a condition, `some()` is more semantically appropriate. If you need to check for simple equality existence in an array, `includes()` is even simpler and handles `NaN`.
-
     - **Use `some()` or `includes()` instead:**
 
       ```javascript
@@ -213,7 +212,6 @@ console.log(mixedArray.findIndex(Number.isNaN)); // Output: 2 (correctly finds N
 
 3.  **When You Need the Actual Element that Passes the Test:**
     If you want the element itself, not its index, `find()` is the correct method.
-
     - **Use `find()` instead:**
       ```javascript
       const students = [
@@ -226,7 +224,6 @@ console.log(mixedArray.findIndex(Number.isNaN)); // Output: 2 (correctly finds N
 
 4.  **When You Need All Elements that Pass a Test:**
     If you want a new array containing _all_ the elements that satisfied the condition, `filter()` is the appropriate method.
-
     - **Use `filter()` instead:**
       ```javascript
       const scores = [65, 80, 72, 95, 50];
@@ -336,3 +333,30 @@ console.log(`Has [4,5,6] pattern? ${hasRepeatingPattern(sequence, [4, 5, 6])}`);
 ```
 
 `findIndex()` is a valuable array method when you need the precise location (index) of the first element that meets a specified condition. It's particularly useful for operations that inherently require an index for mutable array manipulation or targeted updates in object collections.
+
+## Advanced
+
+Instead of .every(), which returns a boolean, we use .findIndex(). This returns the index of the first element that fails our condition.
+
+```javascript
+const mixedPoints = [1, 3, 5, 8, 4, 2];
+
+function findTrendBreak(arr) {
+  // We look for the first index that is NOT greater than the previous one
+  const breakIndex = arr.findIndex((value, index) => {
+    if (index === 0) return false;
+    return value <= arr[index - 1]; // The condition that "breaks" the increase
+  });
+
+  if (breakIndex === -1) return "No break found (strictly increasing)";
+
+  return {
+    index: breakIndex,
+    value: arr[breakIndex],
+    reason: `Value ${arr[breakIndex]} dropped or stayed same after ${arr[breakIndex - 1]}`,
+  };
+}
+
+console.log(findTrendBreak(mixedPoints));
+// Output: { index: 4, value: 4, reason: "Value 4 dropped or stayed same after 8" }
+```

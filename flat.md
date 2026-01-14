@@ -65,7 +65,7 @@ console.log(fullyFlattened); // Output: [1, 2, 3, 4, 5, 6, 7]
 ```javascript
 const sparseArray = [1, , 3, [4, , 6]]; // Contains empty slots
 const flattenedSparse = sparseArray.flat();
-console.log(flattenedSparse); // Output: [1, 3, 4, empty, 6] (Note: `flat()` removes top-level empty slots, but not nested ones unless further flattened)
+console.log(flattenedSparse); // Output: [1, 3, 4, 6] (Note: `flat()` removes top-level empty slots, but not nested ones unless further flattened)
 
 // To remove all empty slots:
 const fullyCleaned = sparseArray.flat(Infinity);
@@ -96,15 +96,22 @@ console.log(fullyCleaned); // Output: [1, 3, 4, 6]
     ```javascript
     // Imagine a function that gathers file paths recursively
     function getFilePaths(folder) {
-      if (folder.files) {
-        return folder.files.map((file) => `${folder.name}/${file}`);
-      }
-      if (folder.subfolders) {
-        return folder.subfolders.map((sub) => getFilePaths(sub));
-      }
-      return [];
-    }
+      let paths = [];
 
+      // 1. Get files if they exist
+      if (folder.files) {
+        const filePaths = folder.files.map((file) => `${folder.name}/${file}`);
+        paths = paths.concat(filePaths);
+      }
+
+      // 2. Get subfolders if they exist (Don't use 'else' or return early!)
+      if (folder.subfolders) {
+        const subPaths = folder.subfolders.map((sub) => getFilePaths(sub));
+        paths = paths.concat(subPaths);
+      }
+
+      return paths;
+    }
     const fileSystem = {
       name: "root",
       subfolders: [
@@ -183,7 +190,6 @@ console.log(fullyCleaned); // Output: [1, 3, 4, 6]
 
 3.  **When You Need to Transform and Flatten Exactly One Level (`flatMap()` is better):**
     If your common use case is `array.map(...).flat(1)`, then `flatMap()` is more concise, readable, and often slightly more performant as it avoids creating an intermediate array.
-
     - **Use `flatMap()` instead:**
 
       ```javascript

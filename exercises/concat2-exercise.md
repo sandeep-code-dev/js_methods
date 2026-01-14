@@ -205,6 +205,8 @@ console.log(Object.prototype.toString.call(new Date())); // Output: "[object Dat
 
 You can override the `toString()` method in your custom classes or objects to provide a more meaningful string representation when your object is implicitly or explicitly converted to a string.
 
+<!-- NOTE do it when classes are done. -->
+
 ```javascript
 class Book {
   constructor(title, author, year) {
@@ -263,6 +265,8 @@ console.log(getPreciseType(new Map())); // Map
 **3. Debugging and Logging (Implicit Calls):**
 
 Leveraging the implicit `toString()` call for quick debugging output, especially for objects that have a helpful custom `toString()`.
+
+<!-- NOTE Do it when classes are done -->
 
 ```javascript
 // Imagine a custom Error class

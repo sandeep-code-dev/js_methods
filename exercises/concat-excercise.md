@@ -199,7 +199,7 @@ console.log(totalPrice);
     ```
 
     **2. Synchronous Asynchronous Operations (Anti-Pattern Warning):
-    While `forEach` can _contain_ asynchronous operations, it does **not\*\* wait for them to complete. This is a common pitfall. If you need to perform sequential async operations, use `for...of` with `await`.
+    While `forEach` can *contain* asynchronous operations, it does **not\*\* wait for them to complete. This is a common pitfall. If you need to perform sequential async operations, use `for...of` with `await`.
 
 # Map Method
 
@@ -361,6 +361,7 @@ console.log(sentence.indexOf("lazy", 20)); // Output: 35 (search starts at index
 
 ```javascript
 // indexOf() method
+// it finds undefined but not NaN
 const mixedArray = [1, "hello", NaN, undefined];
 
 console.log(mixedArray.indexOf(NaN)); // Output: -1 (does NOT find NaN)
@@ -945,9 +946,9 @@ console.log(sentence.includes("fox", 10)); // Output: true (search starts at ind
 
 You can combine `includes()` with other logic to create basic authorization checks.
 
-```javascript
-// TODO do it when some() method learnt
+<!-- TODO do it when some() method learnt -->
 
+```javascript
 //includes()
 const currentUserRoles = ["admin", "editor", "viewer"];
 
@@ -985,9 +986,9 @@ console.log(includesCaseInsensitive(articleText, "python")); // Output: false
 
 To see if two arrays share _any_ common elements.
 
-```javascript
-// TODO come back when learn some() method.
+<!-- TODO come back when learn some() method. -->
 
+```javascript
 function hasCommonElement(arr1, arr2) {
   return arr1.some((element) => arr2.includes(element));
 }
@@ -1012,8 +1013,9 @@ console.log(
 
 `includes()` is useful within a `filter()` method when searching through string properties of objects.
 
+<!-- TODO come back when learn some() method. -->
+
 ```javascript
-// TODO come back when learn some() method.
 const posts = [
   { id: 1, title: "Learn JavaScript Basics", tags: ["js", "programming"] },
   { id: 2, title: "Mastering CSS Flexbox", tags: ["css", "frontend"] },
@@ -1208,9 +1210,10 @@ console.log(aliceDoc);
 
 ### Advanced Examples
 
+<!-- TODO do it when react async programming id done. -->
+
 ```javascript
 // find()
-// TODO do it when react async programming id done.
 const itemCache = []; // Store fetched items
 
 async function getItemFromCacheOrFetch(id) {
@@ -1292,8 +1295,9 @@ Resources after assignments: [
 
 `find()` can be used to match the current URL path to a registered route.
 
+<!-- TODO do it when done regular expression and router in reactjs -->
+
 ```javascript
-// TODO do it when done regular expression and router in reactjs
 const routes = [
   { path: "/", component: "HomePage" },
   { path: "/users", component: "UserListPage" },
@@ -1601,8 +1605,9 @@ const domain = url.slice(8, 23);
 3.  **Converting Array-like Objects to Arrays:**
     `slice.call()` (or `Array.prototype.slice.call()`) is a classic technique to convert array-like objects (like `arguments` in old JavaScript functions, or NodeList from DOM queries) into true arrays.
 
+<!-- TODO come back when reduce() function is done. -->
+
 ```javascript
-// TODO come back when reduce() function is done.
 // In an old-style function using 'arguments'
 function sumAll() {
   const args = Array.prototype.slice.call(arguments);
@@ -1620,8 +1625,9 @@ console.log(sumAll(1, 2, 3, 4)); // 10
 4.  **Implementing Pagination Logic:**
     `slice()` is perfect for displaying a subset of data for pagination.
 
+<!-- TODO  do when learnt array.from -->
+
 ```javascript
-// TODO  do when learnt array.from
 const data = Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`);
 const itemsPerPage = 10;
 const currentPage = 2; // Displaying the second page
@@ -1641,8 +1647,9 @@ console.log(pageItems); // Shows items 11-20
     If your intention is to add, remove, or replace elements within the _original_ array, `slice()` is not the right choice. Use methods like `splice()`, `push()`, `pop()`, `shift()`, `unshift()`, or direct index assignment.
     - **Use `splice()` instead for in-place modification:**
 
+<!-- TODO do when splice() method done. -->
+
 ```javascript
-// TODO do when splice() method done.
 const numbers = [1, 2, 3, 4, 5];
 numbers.splice(1, 2, 10, 11); // Removes 2, 3 and inserts 10, 11
 console.log(numbers); // Output: [1, 10, 11, 4, 5]
@@ -1709,8 +1716,9 @@ console.log(recentSearches.get()); // ["React", "Vue", "Angular"] (JavaScript wa
 
 `slice()` can be used to simulate a circular buffer where elements wrap around.
 
+<!-- TODO come back when push method is done. -->
+
 ```javascript
-// TODO come back when push method is done.
 function getCircularSlice(arr, startIdx, length) {
   const arrLen = arr.length;
   if (arrLen === 0) return [];
@@ -1883,8 +1891,9 @@ console.log(queryString);
 4.  **Reversing a String (by combining with `split()`):**
     A common trick to reverse a string.
 
-    ```javascript
     <!-- TODO come back when split and reverse are done -->
+
+    ```javascript
     const originalString = "hello";
 
     const reversedString = originalString.split("").reverse().join("");

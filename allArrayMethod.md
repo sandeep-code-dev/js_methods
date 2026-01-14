@@ -17,13 +17,13 @@ These methods take a callback function that is executed for each element.
 3.  **`filter()`**: Creates a new array with all elements that pass the test implemented by the provided function.
 4.  **`reduce()`**: Applies a function against an accumulator and each element (from left to right) to reduce it to a single value.
 5.  **`reduceRight()`**: Similar to `reduce()`, but works from right to left.
-6.  **`every()`**: Tests whether all elements in the array pass the test implemented by the provided function. Returns a boolean.
-7.  **`some()`**: Tests whether at least one element in the array passes the test implemented by the provided function. Returns a boolean.
+6.  ✅ **`every()`**: Tests whether all elements in the array pass the test implemented by the provided function. Returns a boolean.
+7.  ✅ **`some()`**: Tests whether at least one element in the array passes the test implemented by the provided function. Returns a boolean.
 8.  ✅ **`find()`**: Returns the value of the first element in the array that satisfies the provided testing function.
 9.  ✅ **`findIndex()`**: Returns the index of the first element in the array that satisfies the provided testing function.
 10. ✅ **`findLast()`** (ES2023): Returns the value of the last element in the array that satisfies the provided testing function.
 11. ✅ **`findLastIndex()`** (ES2023): Returns the index of the last element in the array that satisfies the provided testing function.
-12. **`flatMap()`** (ES2019): Maps each element using a mapping function, then flattens the result into a new array. Equivalent to `map().flat(1)`.
+12. ✅ **`flatMap()`** (ES2019): Maps each element using a mapping function, then flattens the result into a new array. Equivalent to `map().flat(1)`.
 
 #### II. Mutating Methods (Modify the Original Array)
 
@@ -50,9 +50,9 @@ These methods return new arrays or values without changing the original array.
 5. ✅ **`includes()`**: Determines whether an array includes a certain value among its entries, returning `true` or `false` as appropriate.
 6. ✅ **`join()`**: Joins all elements of an array into a string.
 7. ✅ **`toString()`**: Returns a string representing the specified array and its elements. (Often equivalent to `join(',')`)
-8. **`toLocaleString()`**: Returns a string representing the elements of the array. Elements are converted to strings using their `toLocaleString` methods.
+8. ✅ **`toLocaleString()`**: Returns a string representing the elements of the array. Elements are converted to strings using their `toLocaleString` methods.
 9. ✅ **`at()`** (ES2022): Takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item.
-10. **`flat()`** (ES2019): Creates a new array with all sub-array elements recursively concatenated into it up to a specified depth.
+10. ✅ **`flat()`** (ES2019): Creates a new array with all sub-array elements recursively concatenated into it up to a specified depth.
 
 #### IV. Non-Mutating Array Methods (ES2023 Additions)
 
