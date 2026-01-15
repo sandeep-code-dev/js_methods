@@ -1,8 +1,4 @@
-const articles = [
-  { title: "JS Features", tags: ["javascript", "es6", "webdev"] },
-  { title: "CSS Tips", tags: ["css", "frontend"] },
-  { title: "Node.js Guide", tags: ["javascript", "backend", "node"] },
+const productOptions = [
+  { name: "Shirt", sizes: ["S", "M", "L"], colors: ["Red", "Blue"] },
+  { name: "Pants", sizes: ["M", "L"], colors: ["Black"] },
 ];
-
-const allTags = articles.flatMap((article) => article.tags);
-console.log(allTags);
