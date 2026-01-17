@@ -38,6 +38,7 @@ These methods change the array they are called on.
 7.  **`reverse()`**: Reverses the order of the elements in an array in place.
 8.  **`fill()`**: Fills all the elements of an array from a start index to an end index with a static value.
 9.  **`copyWithin()`**: Copies part of an array to another location in the same array and returns it, without modifying its length.
+10. \*\* learn set and new at the end
 
 #### III. Accessor Methods (Do Not Modify the Original Array)
 
