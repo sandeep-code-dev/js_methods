@@ -1572,40 +1572,67 @@ Here are the code solutions for all 20 exercises using the `.reduce()` method.
 **1. Sum of an Array**
 
 ```javascript
+// reduce
 const nums = [10, 20, 30, 40];
+
 const sum = nums.reduce((acc, curr) => acc + curr, 0);
-console.log(sum); // 100
+console.log(sum);
+// 100
 ```
 
 **2. Product of an Array**
 
 ```javascript
+// reduce
 const nums = [1, 2, 3, 4];
+
 const product = nums.reduce((acc, curr) => acc * curr, 1);
-console.log(product); // 24
+console.log(product);
+// 24
 ```
 
 **3. Find the Maximum Value**
 
 ```javascript
 const nums = [5, 12, 8, 130, 44];
+
 const max = nums.reduce((acc, curr) => Math.max(acc, curr), -Infinity);
 // Or: (acc > curr ? acc : curr)
-console.log(max); // 130
+console.log(max);
+// 130
 ```
 
 **4. Reverse a String**
 
 ```javascript
 const str = "hello";
+
 const reversed = str.split("").reduce((acc, char) => char + acc, "");
-console.log(reversed); // "olleh"
+console.log(reversed);
+// "olleh"
+
+const str = "hello";
+const strArray = str.split("");
+
+// Using spread syntax (Cleanest)
+const reversedArray = strArray.reduce((acc, current) => {
+  return [current, ...acc];
+}, []);
+
+console.log(reversedArray);
+// Output: [ 'o', 'l', 'l', 'e', 'h' ]
+
+// or you can also use the following code to get the same output as above
+const reversedArray = strArray.reduce((acc, current) => {
+  return [current].concat(acc);
+}, []);
 ```
 
 **5. Calculate Average**
 
 ```javascript
 const nums = [10, 20, 30, 40];
+
 const average = nums.reduce((acc, curr, index, array) => {
   acc += curr;
   if (index === array.length - 1) {
@@ -1613,7 +1640,8 @@ const average = nums.reduce((acc, curr, index, array) => {
   }
   return acc;
 }, 0);
-console.log(average); // 25
+console.log(average);
+// 25
 ```
 
 ---
@@ -1628,27 +1656,32 @@ const matrix = [
   [3, 4],
   [5, 6],
 ];
+
 const flat = matrix.reduce((acc, curr) => acc.concat(curr), []);
-console.log(flat); // [1, 2, 3, 4, 5, 6]
+console.log(flat);
+// [1, 2, 3, 4, 5, 6]
 ```
 
 **7. Remove Duplicates**
 
 ```javascript
 const nums = [1, 2, 3, 1, 2, 3, 4];
+
 const unique = nums.reduce((acc, curr) => {
   if (!acc.includes(curr)) {
     acc.push(curr);
   }
   return acc;
 }, []);
-console.log(unique); // [1, 2, 3, 4]
+console.log(unique);
+// [1, 2, 3, 4]
 ```
 
 **8. Partition by Condition (Even/Odd)**
 
 ```javascript
 const nums = [1, 2, 3, 4, 5, 6];
+
 const partitioned = nums.reduce(
   (acc, curr) => {
     curr % 2 === 0 ? acc.even.push(curr) : acc.odd.push(curr);
@@ -1668,19 +1701,36 @@ const arrays = [
   [3, 4],
   [5, 6],
 ];
+
+// first way to do this
 const merged = arrays.reduce((acc, curr) => [...acc, ...curr], []);
-console.log(merged); // [1, 2, 3, 4, 5, 6]
+console.log(merged);
+// [1, 2, 3, 4, 5, 6]
+
+// second way
+const merged = arrays.reduce((acc, curr) => acc.concat(curr), []);
+console.log(merged);
+
+// third way
+const merged = arrays.flat();
+console.log(merged);
+
+// fourth way
+const merged = arrays.flatMap((item) => item);
+console.log(merged);
 ```
 
 **10. Count Occurrences**
 
 ```javascript
 const colors = ["red", "blue", "red", "green", "blue", "red"];
+
 const counts = colors.reduce((acc, color) => {
   acc[color] = (acc[color] || 0) + 1;
   return acc;
 }, {});
-console.log(counts); // { red: 3, blue: 2, green: 1 }
+console.log(counts);
+// { red: 3, blue: 2, green: 1 }
 ```
 
 ---
@@ -1695,6 +1745,7 @@ const people = [
   { name: "Bob", age: 20 },
   { name: "Charlie", age: 21 },
 ];
+
 const grouped = people.reduce((acc, person) => {
   const key = person.age;
   if (!acc[key]) acc[key] = [];
