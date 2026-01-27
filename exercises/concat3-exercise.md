@@ -1856,15 +1856,18 @@ const flatten = (arr) => {
   }, []);
 };
 
-console.log(flatten(nested)); // [1, 2, 3, 4, 5, 6]
+console.log(flatten(nested));
+// [1, 2, 3, 4, 5, 6]
 ```
 
 **20. Generating HTML List**
 
 ```javascript
 const items = ["Item 1", "Item 2", "Item 3"];
+
 const html = items.reduce((acc, curr) => acc + `<li>${curr}</li>`, "");
-console.log(html); // "<li>Item 1</li><li>Item 2</li><li>Item 3</li>"
+console.log(html);
+// "<li>Item 1</li><li>Item 2</li><li>Item 3</li>"
 ```
 
 Would you like me to explain any specific one of these more thoroughly, such as the **Function Pipe (#17)** or the **Deep Flatten (#19)**?
@@ -1941,7 +1944,8 @@ const flatten = (arr) => {
   }, []); // Start with empty array
 };
 
-console.log(flatten(nested)); // [1, 2, 3, 4, 5, 6]
+console.log(flatten(nested));
+// [1, 2, 3, 4, 5, 6]
 ```
 
 **How it works step-by-step:**
@@ -2069,6 +2073,10 @@ Here are 10 modern, real-world examples using this specific **Pipeline Pattern**
 const cart = { price: 100, weight: 2 }; // Initial Data
 
 // The Steps
+// apply coupon discount of 10% off
+// addTax 5% tax
+// add flat shipping cost 15
+
 const calculateSubtotal = (c) => c.price;
 const applyCoupon = (total) => total * 0.9; // 10% off
 const addTax = (total) => total * 1.05; // 5% tax
@@ -2091,6 +2099,8 @@ console.log(`Final: $${finalPrice.toFixed(2)}`);
 
 **Scenario:** A user sends a message. Before displaying it, you need to strip HTML (security), block swear words, and format links.
 
+<!-- NOTE  comeback when regular expressions are done.-->
+
 ```javascript
 const rawMessage = "   Hello <script>hack</script> check this out!   ";
 
@@ -2111,6 +2121,9 @@ console.log(cleanMessage);
 **Scenario:** You have a list of all possible time slots, but you need to filter them down to what is actually bookable right now.
 
 ```javascript
+// remove the booked slots from all slots
+// remove 12:00 as its lunch break
+// make the object with time: , available: boolean
 const allSlots = ["09:00", "10:00", "12:00", "14:00", "16:00"];
 const bookedSlots = ["10:00", "14:00"];
 
@@ -2140,6 +2153,11 @@ console.log(availableSlots);
 ```javascript
 const rawGPS = { lat: 40.7128, lng: -74.006, accuracy: 15 };
 
+// validate gps data return null if accuracy is above 20 otherwise return data
+// round up the coordinates
+// format for api
+//output: "40.71, -74.01"
+
 const gpsPipeline = [
   // 1. Validation check (return null if invalid)
   (pt) => (pt.accuracy > 20 ? null : pt),
@@ -2165,6 +2183,8 @@ console.log(processedLocation);
 
 **Scenario:** When a user types into a search bar, you rarely search for the exact raw string. You normalize it first to improve matches.
 
+<!-- NOTE comeback when learnt regular expressions -->
+
 ```javascript
 const userInput = "  iPhone 15 PRO   ";
 
@@ -2184,6 +2204,8 @@ console.log(searchUrl);
 
 **Scenario:** Converting a user's post title into a clean, URL-friendly slug (like used in blog posts or products).
 
+<!-- NOTE comeback when learnt regular expressions -->
+
 ```javascript
 const postTitle = "5 Tips for Learning Node.js in 2026! 🚀";
 
@@ -2202,6 +2224,8 @@ console.log(slug);
 ### 7. Auth: Middleware Chain (Mock)
 
 **Scenario:** In backend coding, request processing is basically one big `reduce`. You take a request object and check permissions step-by-step.
+
+<!-- NOTE comeback when nodejs tutorial by kgcoding done -->
 
 ```javascript
 const request = { user: { role: "admin" }, path: "/dashboard" };
@@ -2236,7 +2260,9 @@ console.log(finalRequest);
 
 ```javascript
 const rawEvent = { type: "CLICK", x: 100, y: 200, target: "BuyButton" };
-
+// convert the rawEvent object to lowercase;
+// combine x and y with key coordinates: [values]
+// delete x and y
 const analyticsPipeline = [
   (evt) => ({ ...evt, type: evt.type.toLowerCase() }), // Standardize case
   (evt) => ({ ...evt, coordinates: [evt.x, evt.y] }), // Combine X/Y
@@ -2360,6 +2386,8 @@ console.log(getBreadcrumb("gaming", categories).join(" > "));
 
 **Scenario:** Like Reddit or Slack threads. You have a flat list of messages, but you need to render them nested inside each other.
 
+<!-- NOTE do when JSON Stringfy done -->
+
 ```javascript
 const messages = [
   { id: 1, text: "Hello!", parentId: null },
@@ -2379,6 +2407,36 @@ const buildThread = (parentId, allMsgs) => {
 };
 
 console.log(JSON.stringify(buildThread(null, messages), null, 2));
+//output:
+
+// [
+//   {
+//     "id": 1,
+//     "text": "Hello!",
+//     "parentId": null,
+//     "replies": [
+//       {
+//         "id": 2,
+//         "text": "Hi there",
+//         "parentId": 1,
+//         "replies": [
+//           {
+//             "id": 3,
+//             "text": "How are you?",
+//             "parentId": 2,
+//             "replies": []
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     "id": 4,
+//     "text": "New topic",
+//     "parentId": null,
+//     "replies": []
+//   }
+// ]
 ```
 
 ### 3. File Uploads: Calculating Folder Size
@@ -2481,12 +2539,15 @@ const getPrerequisites = (course) => {
   return [...reqs, ...getPrerequisites(reqs[0])];
 };
 
-console.log(getPrerequisites("advanced")); // ['intermediate', 'basic']
+console.log(getPrerequisites("advanced"));
+// ['intermediate', 'basic']
 ```
 
 ### 7. Location Tracking: Quadtree Search (Simplified)
 
 **Scenario:** You have thousands of drivers on a map. To find who is near you efficiently, maps divide the world into 4 quadrants, then divide those into 4, etc. A recursive search finds the right "box."
+
+<!-- NOTE  advanced topic when learning about tracking location.-->
 
 ```javascript
 const findInQuadtree = (node, userLocation) => {
@@ -2504,6 +2565,8 @@ const findInQuadtree = (node, userLocation) => {
 ### 8. Search: Finding a Key in Deep JSON
 
 **Scenario:** You get a huge messy JSON response from an API. You know there is a key called `"secret_token"` somewhere in there, but you don't know the path.
+
+<!-- NOTE when learning about api -->
 
 ```javascript
 const messyData = {
@@ -2567,6 +2630,8 @@ console.log(renderMenu(menuItems));
 ### 10. API: Exponential Backoff (Retry Logic)
 
 **Scenario:** Your app tries to connect to a server. If it fails, wait 1 second and retry. If that fails, wait 2 seconds, then 4, then 8.
+
+<!-- NOTE do it when nodejs api done -->
 
 ```javascript
 const connectWithRetry = (attempt = 1) => {

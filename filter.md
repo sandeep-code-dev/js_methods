@@ -115,6 +115,7 @@ const people = [
 // console.log(`adults ${adults}`);
 const adults = people.filter((person) => person.age >= 18);
 console.log(adults);
+// Output: [ { name: 'Florin', age: 26 }, { name: 'Ivan', age: 18 } ]
 
 // Gemini Example
 const users = [
@@ -143,7 +144,7 @@ const uniqueNumbers = duplicateNumbers.filter((value, index, arr) => {
   return arr.indexOf(value) === index;
 });
 console.log(`unique numbers ${uniqueNumbers}`);
-console.log(duplicateNumbers.indexOf(2));
+// Outcome: unique numbers 1,2,3,5,4,6
 ```
 
 **Example 5: Using `index` and `array` (Less common but possible)**
@@ -173,6 +174,12 @@ You can chain multiple `filter()` calls together to apply a sequence of criteria
 const products = [
   { name: "Laptop", category: "Electronics", price: 1200, inStock: true },
   { name: "Headphones", category: "Electronics", price: 150, inStock: false },
+  {
+    name: "Headphones Portronics",
+    category: "Electronics",
+    price: 150,
+    inStock: true,
+  },
   { name: "T-Shirt", category: "Apparel", price: 25, inStock: true },
   { name: "Smartphone", category: "Electronics", price: 800, inStock: true },
   { name: "Jeans", category: "Apparel", price: 60, inStock: true },
@@ -184,6 +191,16 @@ const availableElectronicsUnder500 = products
   .filter((product) => product.price < 500); // Third filter: Price under 500
 
 console.log(availableElectronicsUnder500);
+// output of above code:
+// [
+//   {
+//     name: 'Headphones Portronics',
+//     category: 'Electronics',
+//     price: 150,
+//     inStock: true
+//   }
+// ]
+
 // Output: [{ name: 'Headphones', category: 'Electronics', price: 150, inStock: false }] - wait, headphones are not in stock
 // Oh, the example data for headphones is false, so it will not be included.
 // Let's re-evaluate the output based on the provided data:
@@ -216,6 +233,8 @@ console.log(premiumUsers);
 #### 3\. Debouncing or Throttling Event Handlers (Conceptual)
 
 While not a direct `filter()` use, you can conceptually think of `filter()` as part of a larger pattern to control event emissions. For example, if you have a stream of events, you might "filter" them based on a time interval using a custom logic (though typically this is done with specialized libraries or more complex debouncing/throttling implementations).
+
+<!-- NOTE this is nodejs topic -->
 
 ```javascript
 // This is a conceptual example, actual debouncing/throttling is more complex.
@@ -250,6 +269,8 @@ console.log(processedEvents);
 
 You can use closures to create filter functions with dynamic or configurable criteria, making your filters more reusable and flexible.
 
+<!-- NOTE comeback when closure is done -->
+
 ```javascript
 function createPriceFilter(minPrice, maxPrice) {
   return (product) => product.price >= minPrice && product.price <= maxPrice;
@@ -278,6 +299,9 @@ console.log(highEndElectronics);
 `filter()` is often a preliminary step in a data processing pipeline that includes `map()` (for transformation) and `reduce()` (for aggregation).
 
 ```javascript
+// filter the sales over $500
+// Transform to revenue
+// Sum the revenues
 const salesData = [
   { item: "Laptop", quantity: 2, price: 1200 },
   { item: "Mouse", quantity: 5, price: 25 },
@@ -286,7 +310,7 @@ const salesData = [
 ];
 
 const highValueSalesRevenue = salesData
-  .filter((sale) => sale.quantity * sale.price > 500) // Filter for sales over $500
+  .filter((sale) => sale.quantity * sale.price > 250) // Filter for sales over $500
   .map((sale) => sale.quantity * sale.price) // Transform to revenue
   .reduce((total, revenue) => total + revenue, 0); // Sum the revenues
 

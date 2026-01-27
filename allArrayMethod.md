@@ -14,8 +14,8 @@ These methods take a callback function that is executed for each element.
 
 1.  ✅ **`forEach()`**: Executes a provided function once for each array element. (Doesn't return a new array)
 2.  ✅ **`map()`**: Creates a new array with the results of calling a provided function on every element.
-3.  **`filter()`**: Creates a new array with all elements that pass the test implemented by the provided function.
-4.  **`reduce()`**: Applies a function against an accumulator and each element (from left to right) to reduce it to a single value.
+3.  ✅ **`filter()`**: Creates a new array with all elements that pass the test implemented by the provided function.
+4.  ✅ **`reduce()`**: Applies a function against an accumulator and each element (from left to right) to reduce it to a single value.
 5.  **`reduceRight()`**: Similar to `reduce()`, but works from right to left.
 6.  ✅ **`every()`**: Tests whether all elements in the array pass the test implemented by the provided function. Returns a boolean.
 7.  ✅ **`some()`**: Tests whether at least one element in the array passes the test implemented by the provided function. Returns a boolean.

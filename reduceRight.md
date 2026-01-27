@@ -82,20 +82,25 @@ If you have an array where later entries should override earlier ones, `reduceRi
 
 ```javascript
 const configUpdates = [
-  ["theme", "light"],
-  ["font", "sans-serif"],
-  ["theme", "dark"], // This one should win
-  ["fontSize", "16px"],
+  ["theme", "light"], // Index 0 (Processed LAST)
+  ["font", "sans-serif"], // Index 1
+  ["theme", "dark"], // Index 2 (Processed FIRST)
+  ["fontSize", "16px"], // Index 3
 ];
 
-// reduceRight ensures 'dark' theme takes precedence
-const finalConfig = configUpdates.reduceRight((acc, [key, value]) => {
+const incorrectConfig = configUpdates.reduceRight((acc, [key, value]) => {
+  // 1st iter: key="fontSize", acc = { fontSize: "16px" }
+  // 2nd iter: key="theme",    acc = { fontSize: "16px", theme: "dark" }
+  // 3rd iter: key="font",     acc = { fontSize: "16px", theme: "dark", font: "sans-serif" }
+  // 4th iter: key="theme",    acc overwrites "dark" with "light"!
+
   acc[key] = value;
+  console.log(`Processing: ${key} -> ${value}`); // Trace the order
   return acc;
 }, {});
 
-console.log(finalConfig);
-// Output: { theme: 'dark', font: 'sans-serif', fontSize: '16px' }
+console.log("Result:", incorrectConfig);
+// Output: { fontSize: '16px', theme: 'light', font: 'sans-serif' }
 ```
 
 ---
@@ -104,7 +109,6 @@ console.log(finalConfig);
 
 1.  **When Processing Data from Right to Left:**
     This is the core reason to use `reduceRight()`. Any scenario where the last element needs to be processed first, or where the "head" of the accumulated result is built from the end of the array.
-
     - **Example:** Calculating a running balance where deductions/additions are applied in reverse order of a transaction log, or parsing a sequence where the last token determines the initial state.
 
 2.  **Overwriting Properties with Later Entries (Configuration/Merge):**
@@ -129,15 +133,15 @@ console.log(finalConfig);
 
     ```javascript
     // Simplified chain of operations where result from right feeds into left
-    // Example: (x => x + 1)(x => x * 2)(5)  => (5 * 2) + 1 = 11
-    // Represented as an array of functions, applied right-to-left
+    // Execution Order: (x / 5) -> (x * 2) -> (x + 1)
     const transformations = [
-      (x) => x + 1,
-      (x) => x * 2,
-      (x) => x / 5, // This one is not actually applied in this example, just showing the concept
+      (x) => x + 1, // Step 3: 2 + 1 = 3
+      (x) => x * 2, // Step 2: 1 * 2 = 2
+      (x) => x / 5, // Step 1: 5 / 5 = 1 (reduceRight starts here)
     ];
 
     const initialValue = 5;
+
     const finalResult = transformations.reduceRight(
       (currentValue, transformFn) => {
         return transformFn(currentValue);
@@ -145,7 +149,8 @@ console.log(finalConfig);
       initialValue,
     );
 
-    console.log(finalResult); // Output: 11
+    console.log(finalResult);
+    // Output: 3
     ```
 
 ---
@@ -154,7 +159,6 @@ console.log(finalConfig);
 
 1.  **When the Order of Iteration Doesn't Matter:**
     If the final accumulated value is the same regardless of whether you process left-to-right or right-to-left (e.g., summing numbers, finding min/max), `reduce()` is the more common and generally preferred choice simply because it's used more frequently and might be slightly more intuitive for many.
-
     - **Use `reduce()`:**
       ```javascript
       const numbers = [1, 2, 3];
@@ -163,7 +167,6 @@ console.log(finalConfig);
 
 2.  **When You Need to Modify the Array (and don't need a single reduced value):**
     `reduceRight()` is for aggregation, not mutation or transformation into a new array of the same length.
-
     - **Use `map()`, `filter()`, `forEach()`, or mutating methods like `splice()`:**
 
       ```javascript
@@ -180,7 +183,6 @@ console.log(finalConfig);
 
 3.  **When You Need to Find a Specific Element or its Index:**
     `reduceRight()` will give you a single aggregated value. If you need the first (or last) element/index that matches a condition, `find()`, `findIndex()`, `findLast()`, or `findLastIndex()` are more appropriate and efficient as they short-circuit.
-
     - **Use `find()`/`findIndex()`:**
 
       ```javascript
