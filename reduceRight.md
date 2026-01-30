@@ -49,9 +49,10 @@ Imagine `reduceRight()` as processing a stack of papers. Instead of reading from
 
 ```javascript
 const numbers = [1, 2, 3, 4];
-const sum = numbers.reduceRight((acc, current) => acc + current, 0);
-console.log(sum); // Output: 10
-// In this case, sum is the same as reduce()
+
+const sum = numbers.reduceRight((acc, current) => acc + current, 0); // In this case, sum is the same as reduce()
+console.log(sum);
+// Output: 10
 ```
 
 **2. Concatenating Strings (Order Matters\!):**
@@ -264,6 +265,8 @@ console.log(flattened); // Output: [1, 2, 3, 4, 5, 6, 7]
 
 While full undo/redo is complex, `reduceRight()` could be used in a simplified way to re-apply actions from a history, particularly if the latest actions need to take precedence.
 
+<!-- NOTE comeback when new and set are learnt -->
+
 ```javascript
 const commandHistory = [
   { type: "add", item: "A" },
@@ -297,6 +300,7 @@ const finalState = commandHistory.reduceRight(
 console.log("Final items after commands (simplified):", [
   ...finalState.currentItems,
 ]);
+// Outcome: Final items after commands (simplified): [ 'C', 'B' ]
 // This example highlights how the order of processing for 'removed' vs 'added' matters.
 // A more robust undo/redo would likely use a stack of states or a different reduction.
 ```

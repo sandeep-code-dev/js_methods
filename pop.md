@@ -157,7 +157,6 @@ console.log(removedUser); // Output: { id: 2, name: 'Bob' }
 
 1.  **When You Need an Immutable Operation (Don't Modify Original Array):**
     `pop()` modifies the array in place. If your application design or state management principles require immutability (e.g., in React/Redux), `pop()` is not suitable. Instead, create a new array without the last element.
-
     - **Use `slice()` or spread syntax (`...`) for immutability:**
 
       ```javascript
@@ -181,7 +180,6 @@ console.log(removedUser); // Output: { id: 2, name: 'Bob' }
 
 2.  **When Removing Elements from the Beginning of an Array:**
     While you _can_ `reverse()` then `pop()` then `reverse()` again, this is inefficient and less clear. `shift()` is the dedicated method for removing from the beginning.
-
     - **Use `shift()` instead:**
       ```javascript
       const myQueue = [1, 2, 3];
@@ -192,7 +190,6 @@ console.log(removedUser); // Output: { id: 2, name: 'Bob' }
 
 3.  **When Removing Elements from a Specific Index (Not End or Beginning):**
     For removing elements from the middle of an array, `splice()` is the correct method.
-
     - **Use `splice()` instead:**
       ```javascript
       const elements = ["A", "B", "C", "D"];
@@ -244,6 +241,27 @@ console.log("\n--- Summary ---");
 console.log("Original tasks:", tasks);
 console.log("Completed tasks:", completedTasks);
 console.log("Failed tasks:", failedTasks);
+
+// Output:
+// Attempting task: Send Email
+// Task Send Email COMPLETED.
+// Attempting task: Process Data
+// Task Process Data COMPLETED.
+// Attempting task: Upload Image
+// Task Upload Image COMPLETED.
+//
+// --- Summary ---
+// Original tasks: [
+//   { id: 1, name: 'Upload Image', status: 'completed' },
+//   { id: 2, name: 'Process Data', status: 'completed' },
+//   { id: 3, name: 'Send Email', status: 'completed' }
+// ]
+// Completed tasks: [
+//   { id: 3, name: 'Send Email', status: 'completed' },
+//   { id: 2, name: 'Process Data', status: 'completed' },
+//   { id: 1, name: 'Upload Image', status: 'completed' }
+// ]
+// Failed tasks: []
 ```
 
 **2. Managing Breadcrumb Navigation History (Simplified):**

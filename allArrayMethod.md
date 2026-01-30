@@ -16,7 +16,7 @@ These methods take a callback function that is executed for each element.
 2.  ✅ **`map()`**: Creates a new array with the results of calling a provided function on every element.
 3.  ✅ **`filter()`**: Creates a new array with all elements that pass the test implemented by the provided function.
 4.  ✅ **`reduce()`**: Applies a function against an accumulator and each element (from left to right) to reduce it to a single value.
-5.  **`reduceRight()`**: Similar to `reduce()`, but works from right to left.
+5.  ✅ **`reduceRight()`**: Similar to `reduce()`, but works from right to left.
 6.  ✅ **`every()`**: Tests whether all elements in the array pass the test implemented by the provided function. Returns a boolean.
 7.  ✅ **`some()`**: Tests whether at least one element in the array passes the test implemented by the provided function. Returns a boolean.
 8.  ✅ **`find()`**: Returns the value of the first element in the array that satisfies the provided testing function.
@@ -29,15 +29,15 @@ These methods take a callback function that is executed for each element.
 
 These methods change the array they are called on.
 
-1.  **`push()`**: Adds one or more elements to the end of an array and returns the new length of the array.
-2.  **`pop()`**: Removes the last element from an array and returns that element.
-3.  **`shift()`**: Removes the first element from an array and returns that element.
-4.  **`unshift()`**: Adds one or more elements to the beginning of an array and returns the new length of the array.
-5.  **`splice()`**: Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place. Returns the removed elements.
-6.  **`sort()`**: Sorts the elements of an array in place and returns the sorted array. The default sort is lexicographical.
-7.  **`reverse()`**: Reverses the order of the elements in an array in place.
-8.  **`fill()`**: Fills all the elements of an array from a start index to an end index with a static value.
-9.  **`copyWithin()`**: Copies part of an array to another location in the same array and returns it, without modifying its length.
+1. ✅ **`push()`**: Adds one or more elements to the end of an array and returns the new length of the array.
+2. **`pop()`**: Removes the last element from an array and returns that element.
+3. **`shift()`**: Removes the first element from an array and returns that element.
+4. **`unshift()`**: Adds one or more elements to the beginning of an array and returns the new length of the array.
+5. **`splice()`**: Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place. Returns the removed elements.
+6. **`sort()`**: Sorts the elements of an array in place and returns the sorted array. The default sort is lexicographical.
+7. **`reverse()`**: Reverses the order of the elements in an array in place.
+8. **`fill()`**: Fills all the elements of an array from a start index to an end index with a static value.
+9. **`copyWithin()`**: Copies part of an array to another location in the same array and returns it, without modifying its length.
 10. \*\* learn set and new at the end
 
 #### III. Accessor Methods (Do Not Modify the Original Array)

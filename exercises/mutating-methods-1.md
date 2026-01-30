@@ -1,7 +1,3 @@
-The JavaScript `push()` method is one of the most fundamental and frequently used array methods. It adds one or more elements to the **end** of an array and returns the new length of the array. It modifies the **original array** in-place.
-
----
-
 ### The `push()` Method in JavaScript
 
 #### It is a Mutating Methods (Modify the Original Array)
@@ -328,5 +324,3 @@ console.log(doubled); // Output: [2, 4, 6]
   </body>
 </html>
 ```
-
-`push()` is a fundamental workhorse for mutable array manipulation in JavaScript. It's efficient for adding elements to the end and is indispensable for building arrays iteratively. Just remember its in-place nature and choose alternative methods like spread syntax or `concat()` when immutability is required.
