@@ -30,7 +30,7 @@ These methods take a callback function that is executed for each element.
 These methods change the array they are called on.
 
 1. ✅ **`push()`**: Adds one or more elements to the end of an array and returns the new length of the array.
-2. **`pop()`**: Removes the last element from an array and returns that element.
+2. ✅ **`pop()`**: Removes the last element from an array and returns that element.
 3. **`shift()`**: Removes the first element from an array and returns that element.
 4. **`unshift()`**: Adds one or more elements to the beginning of an array and returns the new length of the array.
 5. **`splice()`**: Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place. Returns the removed elements.

@@ -1,36 +1,18 @@
-const tasks = [
-  { id: 1, name: "Upload Image", status: "pending" },
-  { id: 2, name: "Process Data", status: "pending" },
-  { id: 3, name: "Send Email", status: "pending" },
-];
+const simulatedArgs = ["--env=production", "--port=8080", "start"];
 
-const completedTasks = [];
-const failedTasks = [];
-
-function processTasks(taskQueue) {
-  let task;
-  while ((task = taskQueue.pop()) !== undefined) {
-    console.log(`Attempting task: ${task.name}`);
-    // Simulate task execution
-    const success = Math.random() > 0.3; // 70% chance of success
-
-    if (success) {
-      task.status = "completed";
-      completedTasks.push(task);
-      console.log(`Task ${task.name} COMPLETED.`);
+function parseCommandLiveArgs(args) {
+  const options = {};
+  while (args.length > 0) {
+    const arg = args.shift();
+    if (arg.startsWith("--")) {
+      const [key, value] = arg.substring(2).split("=");
+      options[key] = value || true;
     } else {
-      task.status = "failed";
-      failedTasks.push(task);
-      console.log(`Task ${task.name} FAILED. Will retry later.`);
+      options.command = arg;
     }
   }
+  return options;
 }
 
-// Clone tasks array to simulate a queue
-const taskQueue = [...tasks];
-processTasks(taskQueue);
-
-console.log("\n--- Summary ---");
-console.log("Original tasks:", tasks);
-console.log("Completed tasks:", completedTasks);
-console.log("Failed tasks:", failedTasks);
+const config = parseCommandLiveArgs(simulatedArgs);
+console.log("Parsed config:", config);

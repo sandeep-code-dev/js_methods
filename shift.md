@@ -142,6 +142,12 @@ console.log(removedUser); // Output: { id: 1, name: 'Alice' }
     while (commandStream.length > 0) {
       executeCommand(commandStream.shift());
     }
+
+    // output:
+    // Executing: init
+    // Executing: load_config
+    // Executing: start_server
+    // Executing: log_startup
     ```
 
 ---
@@ -150,7 +156,6 @@ console.log(removedUser); // Output: { id: 1, name: 'Alice' }
 
 1.  **When You Need an Immutable Operation (Don't Modify Original Array):**
     `shift()` modifies the array in place. If your application architecture or design principles require data immutability (common in modern front-end frameworks like React/Redux), `shift()` is not suitable. Instead, create a new array without the first element.
-
     - **Use `slice()` or spread syntax (`...`) for immutability:**
 
       ```javascript
@@ -173,7 +178,6 @@ console.log(removedUser); // Output: { id: 1, name: 'Alice' }
 
 2.  **When Removing Elements from the End of an Array:**
     `pop()` is the dedicated and more efficient method for removing from the end. `shift()` involves re-indexing all subsequent elements, which can be slower for very large arrays.
-
     - **Use `pop()` instead:**
       ```javascript
       const myNumbers = [1, 2, 3];
@@ -183,7 +187,6 @@ console.log(removedUser); // Output: { id: 1, name: 'Alice' }
 
 3.  **When Removing Elements from a Specific Index (Not End or Beginning):**
     For removing elements from the middle of an array, `splice()` is the correct method.
-
     - **Use `splice()` instead:**
       ```javascript
       const elements = ["A", "B", "C", "D"];
