@@ -1,5 +1,15 @@
 The JavaScript `shift()` method is used to remove the **first** element from an array. It modifies the **original array** in-place and returns the removed element.
 
+Mnemonics: How to Remember Them
+
+Since the logic is still a bit abstract, here are three simple ways to stop mixing them up:
+
+The "Word Length" Trick
+
+shift is a short word. It makes the array shorter.
+
+unshift is a longer word. It makes the array longer.
+
 ---
 
 ### The `shift()` Method in JavaScript

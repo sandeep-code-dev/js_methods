@@ -565,7 +565,7 @@ console.log(tags);
 ```javascript
 // lastIndexOf()
 const allowedExtensions = [".txt", ".jpg", ".pdf", ".txt"];
-const fileName = "document.report.txt";
+const fileName = "documentReport.txt";
 
 // Get the last '.' to find the extension
 const lastDotIndex = fileName.lastIndexOf(".");
@@ -702,7 +702,8 @@ let myString = "test";
 
 let result = myString.substring(-2, 3);
 // The method treats -2 as 0.
-console.log(result); // Output: "tes"
+console.log(result);
+// Output: "tes"
 ```
 
 ### 5\. Handling Indices Exceeding String Length
@@ -715,7 +716,8 @@ let myString = "abc";
 
 let result = myString.substring(1, 100);
 // The method treats 100 as the string's length (3).
-console.log(result); // Output: "bc"
+console.log(result);
+// Output: "bc"
 ```
 
 ---

@@ -1,18 +1,3 @@
-const simulatedArgs = ["--env=production", "--port=8080", "start"];
-
-function parseCommandLiveArgs(args) {
-  const options = {};
-  while (args.length > 0) {
-    const arg = args.shift();
-    if (arg.startsWith("--")) {
-      const [key, value] = arg.substring(2).split("=");
-      options[key] = value || true;
-    } else {
-      options.command = arg;
-    }
-  }
-  return options;
-}
-
-const config = parseCommandLiveArgs(simulatedArgs);
-console.log("Parsed config:", config);
+const dates = ["2025-01-01", "2023-01-01"];
+dates.sort((a, b) => a.localeCompare(b));
+console.log(dates);

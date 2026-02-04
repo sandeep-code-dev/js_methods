@@ -2,6 +2,16 @@ The JavaScript `unshift()` method is used to add one or more elements to the **b
 
 ---
 
+Mnemonics: How to Remember Them
+
+Since the logic is still a bit abstract, here are three simple ways to stop mixing them up:
+
+The "Word Length" Trick
+
+shift is a short word. It makes the array shorter.
+
+unshift is a longer word. It makes the array longer.
+
 ### The `unshift()` Method in JavaScript
 
 #### It is a Mutating Methods (Modify the Original Array)
@@ -126,7 +136,6 @@ console.log(mixedBag); // Output: [0, { id: 1 }, ['nested'], 'existing']
 
 1.  **When You Need an Immutable Operation (Don't Modify Original Array):**
     `unshift()` modifies the array in place. For immutable state management, `unshift()` is not suitable. Instead, create a new array with the elements prepended.
-
     - **Use Spread Syntax (`...`) for immutability:**
 
       ```javascript
@@ -143,7 +152,6 @@ console.log(mixedBag); // Output: [0, { id: 1 }, ['nested'], 'existing']
 
 2.  **When Adding Elements to the End of an Array:**
     `push()` is the dedicated and more efficient method for adding to the end. `unshift()` involves re-indexing all existing elements, which can be slower for very large arrays.
-
     - **Use `push()` instead:**
       ```javascript
       const myNumbers = [1, 2];
@@ -153,7 +161,6 @@ console.log(mixedBag); // Output: [0, { id: 1 }, ['nested'], 'existing']
 
 3.  **When Inserting Elements at a Specific Index (Not End or Beginning):**
     For inserting elements into the middle of an array, `splice()` is the correct method.
-
     - **Use `splice()` instead:**
       ```javascript
       const elements = ["A", "C"];

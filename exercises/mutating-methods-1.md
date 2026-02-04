@@ -959,6 +959,8 @@ console.log("Parsed config:", config);
 
 When combined with `push()`, `shift()` can maintain a fixed-size buffer where older elements are discarded.
 
+<!-- NOTE comeback when classes are done -->
+
 ```javascript
 class CircularBuffer {
   constructor(capacity) {
@@ -992,3 +994,586 @@ console.log("Readings 3:", sensorReadings.getContents());
 ```
 
 `shift()` is a vital method for managing arrays where elements need to be processed from the beginning in a FIFO manner. Its efficiency and direct modification of the array make it suitable for queue-like operations. However, always be mindful of its performance characteristics for very large arrays and use immutable alternatives when preserving the original array is a requirement.
+
+The JavaScript `unshift()` method is used to add one or more elements to the **beginning** of an array. It modifies the **original array** in-place and returns the new length of the array.
+
+---
+
+Mnemonics: How to Remember Them
+
+Since the logic is still a bit abstract, here are three simple ways to stop mixing them up:
+
+The "Word Length" Trick
+
+shift is a short word. It makes the array shorter.
+
+unshift is a longer word. It makes the array longer.
+
+### The `unshift()` Method in JavaScript
+
+#### It is a Mutating Methods (Modify the Original Array)
+
+The `unshift()` method adds one or more elements to the beginning of an array and returns the new length of the array.
+
+#### Syntax:
+
+```javascript
+arr.unshift(element1, element2, ..., elementN)
+```
+
+#### Parameters:
+
+- `element1, element2, ..., elementN` (Optional): The elements to add to the beginning of the array. You can pass zero or more elements.
+
+#### Return Value:
+
+- The new `length` property of the array after the elements have been added.
+
+#### How it Works (Mental Model):
+
+Imagine `unshift()` as inserting items at the very front of your list. All existing items get shifted to the right (their indices increase) to make room for the new items at the beginning.
+
+#### Basic Examples:
+
+**1. Adding a Single Element to the Beginning:**
+
+```javascript
+const fruits = ["banana", "cherry"];
+
+const newLength = fruits.unshift("apple");
+console.log(fruits);
+console.log(newLength);
+// Output: ['apple', 'banana', 'cherry']
+// Output: 3
+```
+
+**2. Adding Multiple Elements to the Beginning:**
+
+```javascript
+const numbers = [3, 4, 5];
+
+const newLengthMulti = numbers.unshift(0, 1, 2);
+console.log(numbers);
+console.log(newLengthMulti);
+// Output: [0, 1, 2, 3, 4, 5]
+// Output: 6
+```
+
+**3. Unshifting to an Empty Array:**
+
+```javascript
+const emptyArray = [];
+
+emptyArray.unshift("first");
+console.log(emptyArray);
+// Output: ['first']
+```
+
+**4. Unshifting Various Data Types:**
+
+`unshift()` can add any data type, including other arrays or objects. Similar to `push()`, if you unshift an array, it adds the array _as a single element_, not its contents.
+
+```javascript
+const mixedBag = ["existing"];
+
+mixedBag.unshift(0, { id: 1 }, ["nested"]);
+console.log(mixedBag);
+// Output: [0, { id: 1 }, ['nested'], 'existing']
+```
+
+---
+
+### When to Use `unshift()`:
+
+1.  **Adding Elements to the Beginning of an Array In-Place:**
+    This is the core purpose of `unshift()`. When you need to extend an existing array by prepending new items.
+
+    ```javascript
+    const recentActivities = ["User X logged in"];
+
+    recentActivities.unshift("New message received from Y");
+    console.log(recentActivities);
+    // Output: ['New message received from Y', 'User X logged in']
+    ```
+
+2.  **Implementing a Queue Data Structure (FIFO - First-In, First-Out) where items are added to the front:**
+    While `push()` and `shift()` are more common for a traditional queue (add to end, remove from front), sometimes you might design a queue where new items arrive at the front.
+
+    ```javascript
+    const printerQueue = ["docB", "docC"];
+
+    printerQueue.unshift("docA");
+    console.log("Printer Queue:", printerQueue);
+    // New document arrives, put it at the front
+    // ['docA', 'docB', 'docC']
+
+    // To process, you'd usually use pop() or shift() depending on desired behavior.
+    // If you want to process the _newest_ item immediately:
+    const nextDoc = printerQueue.shift();
+    console.log("Processing:", nextDoc);
+    // docA
+    ```
+
+3.  **Maintaining a Limited "Most Recent" List (in conjunction with `pop()`):**
+    If you want a fixed-size list that always shows the latest N items, adding to the front and removing from the back is a common pattern.
+
+    ```javascript
+    const recentNotifications = [];
+    const MAX_NOTIFICATIONS = 3;
+
+    function addNotification(notification) {
+      recentNotifications.unshift(notification); // Add new notification to the top
+      if (recentNotifications.length > MAX_NOTIFICATIONS) {
+        recentNotifications.pop(); // Remove the oldest notification
+      }
+    }
+
+    addNotification("New email from Alice");
+    addNotification("Event reminder at 3 PM");
+    addNotification("Security alert!");
+    console.log("Recent notifications:", recentNotifications);
+    // Output: ['Security alert!', 'Event reminder at 3 PM', 'New email from Alice']
+
+    addNotification("Birthday wish from Bob"); // This will remove 'New email from Alice'
+    console.log("Recent notifications:", recentNotifications);
+    // Output: ['Birthday wish from Bob', 'Security alert!', 'Event reminder at 3 PM']
+    ```
+
+---
+
+### When NOT to Use `unshift()`:
+
+1.  **When You Need an Immutable Operation (Don't Modify Original Array):**
+    `unshift()` modifies the array in place. For immutable state management, `unshift()` is not suitable. Instead, create a new array with the elements prepended.
+    - **Use Spread Syntax (`...`) for immutability:**
+
+      ```javascript
+      const originalArray = [1, 2];
+
+      // DON'T do this if you need immutability:
+      // originalArray.unshift(0);
+
+      // DO this (Spread Syntax):
+      const newArraySpread = [0, ...originalArray];
+      console.log(originalArray); // Output: [1, 2] (unchanged)
+      console.log(newArraySpread); // Output: [0, 1, 2]
+      ```
+
+2.  **When Adding Elements to the End of an Array:**
+    `push()` is the dedicated and more efficient method for adding to the end. `unshift()` involves re-indexing all existing elements, which can be slower for very large arrays.
+    - **Use `push()` instead:**
+      ```javascript
+      const myNumbers = [1, 2];
+      myNumbers.push(3); // Add 3 to the end
+      console.log(myNumbers); // Output: [1, 2, 3]
+      ```
+
+3.  **When Inserting Elements at a Specific Index (Not End or Beginning):**
+    For inserting elements into the middle of an array, `splice()` is the correct method.
+    - **Use `splice()` instead:**
+      ```javascript
+      const elements = ["A", "C"];
+      elements.splice(1, 0, "B"); // Insert 'B' at index 1, delete 0 elements
+      console.log(elements); // Output: ['A', 'B', 'C']
+      ```
+
+4.  **When Performance is Critical for Very Large Arrays (Especially in a Loop):**
+    Because `unshift()` shifts all existing elements, its performance can degrade significantly ($O(n)$ complexity) as the array size grows. For frequent additions to the front of very large arrays, consider using a different data structure like a `LinkedList` or a custom array-like structure that manages its internal pointers more efficiently if `unshift` operations are truly a bottleneck. For most common web development scenarios, this performance impact is negligible.
+
+---
+
+### Advanced Uses with Examples:
+
+**1. Building a Recent Activity Feed (Newest First):**
+
+This is a direct application where `unshift()` shines, as new activities naturally go to the top.
+
+```javascript
+const activityFeed = [];
+
+function addActivity(user, action) {
+  const timestamp = new Date().toLocaleTimeString();
+  const activity = `${timestamp}: ${user} ${action}.`;
+  activityFeed.unshift(activity); // Add to the beginning for "newest first"
+  // Optionally, limit the feed size
+  if (activityFeed.length > 5) {
+    activityFeed.pop(); // Remove the oldest if the feed gets too long
+  }
+}
+
+addActivity("Alice", "posted a new photo");
+addActivity("Bob", "commented on your status");
+addActivity("Charlie", "liked your post");
+
+console.log("Activity Feed:");
+activityFeed.forEach((activity) => console.log(activity));
+/* Output (timestamps will vary):
+7:05:30 PM: Charlie liked your post.
+7:05:30 PM: Bob commented on your status.
+7:05:30 PM: Alice posted a new photo.
+*/
+
+addActivity("David", "shared a link");
+console.log("\nActivity Feed (after new event):");
+activityFeed.forEach((activity) => console.log(activity));
+/* Output (timestamps will vary):
+7:05:30 PM: David shared a link.
+7:05:30 PM: Charlie liked your post.
+7:05:30 PM: Bob commented on your status.
+*/
+```
+
+**2. Prepending Default Options or Fallbacks:**
+
+If you have a dynamic list and want to ensure certain default options always appear at the top.
+
+```javascript
+function getDropdownOptions(userOptions) {
+  const defaultOptions = ["-- Select --", "N/A"];
+  // Create a new array with defaults at the beginning, then add user options
+  return [...defaultOptions, ...userOptions];
+  // Alternatively, using unshift if 'userOptions' array itself can be modified:
+  // userOptions.unshift('-- Select --', 'N/A');
+  // return userOptions;
+}
+
+const fetchedOptions = ["Option A", "Option B"];
+const finalOptions = getDropdownOptions(fetchedOptions);
+console.log(finalOptions); // Output: ['-- Select --', 'N/A', 'Option A', 'Option B']
+```
+
+**3. Simulating a Deque (Double-Ended Queue) where elements are added to the front:**
+
+While `push` and `shift` are typical for a queue, `unshift` combined with `pop` can offer a deque-like behavior if you need to add to the front and remove from the back.
+
+<!-- NOTE  comeback when classes are done.-->
+
+```javascript
+class Deque {
+  constructor() {
+    this.elements = [];
+  }
+
+  // Add to the front
+  addFront(item) {
+    this.elements.unshift(item);
+  }
+
+  // Add to the back (typically push)
+  addBack(item) {
+    this.elements.push(item);
+  }
+
+  // Remove from the front (typically shift)
+  removeFront() {
+    return this.elements.shift();
+  }
+
+  // Remove from the back
+  removeBack() {
+    return this.elements.pop();
+  }
+
+  toArray() {
+    return [...this.elements];
+  }
+}
+
+const queue = new Deque();
+queue.addFront("A"); // ['A']
+queue.addFront("B"); // ['B', 'A']
+queue.addBack("C"); // ['B', 'A', 'C']
+
+console.log(queue.toArray()); // ['B', 'A', 'C']
+
+console.log("Removed from front:", queue.removeFront()); // Removed from front: B
+console.log("Removed from back:", queue.removeBack()); // Removed from back: C
+console.log(queue.toArray()); // ['A']
+```
+
+`unshift()` is valuable for adding elements to the start of an array, particularly when maintaining order where new items always appear first. However, its performance implications for very large arrays and its mutable nature mean it's crucial to use it thoughtfully or choose immutable alternatives (like the spread operator) when appropriate.
+
+The JavaScript `splice()` method is a powerful and versatile tool for modifying arrays directly (in-place). Unlike `slice()`, which creates a new array, `splice()` alters the original array by adding, removing, or replacing elements.
+
+---
+
+### The `splice()` Method in JavaScript
+
+The `splice()` method changes the contents of an array by removing or replacing existing elements and/or adding new elements **in place**.
+
+#### Syntax:
+
+```javascript
+arr.splice(startIndex, deleteCount, item1, item2, ...)
+```
+
+#### Parameters:
+
+- `startIndex` (Required): The index at which to start changing the array.
+  - If `startIndex` is greater than the array's length, it's set to the array's length.
+  - If `startIndex` is negative, it will begin that many elements from the end of the array (e.g., `-1` is the last element, `-2` is the second to last, etc.). If `startIndex` is negative and its absolute value is larger than the array's length, it's set to `0`.
+- `deleteCount` (Optional): An integer indicating the number of elements to remove from `startIndex`.
+  - If `deleteCount` is omitted or is greater than or equal to the number of elements left in the array (starting from `startIndex`), all elements from `startIndex` to the end of the array will be deleted.
+  - If `deleteCount` is `0` or negative, no elements are removed. In this case, you must specify at least one `item` to add.
+- `item1, item2, ...` (Optional): The elements to add to the array, beginning at `startIndex`. If you don't specify any elements, `splice()` will only remove elements.
+
+#### Return Value:
+
+- An array containing the deleted elements.
+- If no elements are removed, an empty array is returned.
+
+#### How it Works (Mental Model):
+
+Think of `splice()` as cutting a section out of your array, and optionally pasting new elements back into that cut.
+
+#### Basic Examples:
+
+**1. Deleting Elements:**
+
+```javascript
+const fruits = ["apple", "banana", "cherry", "date", "elderberry"];
+
+// Remove 1 element starting from index 2
+const deletedFruits = fruits.splice(2, 1);
+console.log(fruits); // Output: ['apple', 'banana', 'date', 'elderberry'] (cherry is removed)
+console.log(deletedFruits); // Output: ['cherry']
+```
+
+**2. Adding Elements (without deleting any):**
+
+```javascript
+const colors = ["red", "green", "blue"];
+
+// Add 'yellow' and 'purple' starting from index 1 (0 elements deleted)
+const addedColors = colors.splice(1, 0, "yellow", "purple");
+console.log(colors); // Output: ['red', 'yellow', 'purple', 'green', 'blue']
+console.log(addedColors); // Output: [] (no elements were deleted)
+```
+
+**3. Replacing Elements:**
+
+```javascript
+const items = ["pen", "notebook", "eraser", "pencil"];
+
+// Replace 1 element starting from index 2 with 'stapler'
+const replacedItems = items.splice(2, 1, "stapler");
+console.log(items); // Output: ['pen', 'notebook', 'stapler', 'pencil']
+console.log(replacedItems); // Output: ['eraser']
+```
+
+**4. Using Negative `startIndex`:**
+
+```javascript
+const numbers = [10, 20, 30, 40, 50];
+
+// Remove 2 elements starting from 2 positions from the end
+const removedFromEnd = numbers.splice(-2, 2);
+console.log(numbers); // Output: [10, 20, 30]
+console.log(removedFromEnd); // Output: [40, 50]
+```
+
+---
+
+### When to Use `splice()`:
+
+1.  **Modifying an Array In-Place:**
+    This is the core reason to use `splice()`. When you explicitly need to change the original array by adding, removing, or replacing elements.
+
+    ```javascript
+    const tasks = ["Buy groceries", "Pay bills", "Walk dog"];
+    tasks.splice(1, 1); // Task at index 1 is done, remove it
+    console.log(tasks); // Output: ['Buy groceries', 'Walk dog']
+    ```
+
+2.  **Inserting Elements at a Specific Position:**
+    When you want to add one or more elements into the middle or beginning/end of an array without removing anything.
+
+    ```javascript
+    const myList = ["item1", "item2", "item5"];
+    myList.splice(2, 0, "item3", "item4"); // Insert 'item3', 'item4' at index 2
+    console.log(myList); // Output: ['item1', 'item2', 'item3', 'item4', 'item5']
+    ```
+
+3.  **Removing a Specific Number of Elements from a Specific Position:**
+    When you know the index and how many elements you want to take out.
+
+    ```javascript
+    const inventory = ["apple", "banana", "orange", "grape", "kiwi"];
+    // Remove 'orange' and 'grape'
+    inventory.splice(2, 2);
+    console.log(inventory); // Output: ['apple', 'banana', 'kiwi']
+    ```
+
+4.  **Replacing Existing Elements with New Ones:**
+    When you want to swap out one or more elements for different ones at a particular position.
+
+    ```javascript
+    const schedule = ["Monday", "Tuesday", "Wednesday", "Thursday"];
+    // Replace Wednesday with 'Meeting' and 'Lunch'
+    schedule.splice(2, 1, "Meeting", "Lunch");
+    console.log(schedule); // Output: ['Monday', 'Tuesday', 'Meeting', 'Lunch', 'Thursday']
+    ```
+
+---
+
+### When NOT to Use `splice()`:
+
+1.  **When You Need an Immutable Operation (Don't Modify Original Array):**
+    If your design principle is to keep original data structures unchanged and work with copies, `splice()` is the wrong choice. Use `slice()`, `filter()`, `map()`, or the spread operator (`...`) to create new arrays.
+    - **Use `slice()` for extracting without modifying:**
+      ```javascript
+      const originalArray = [1, 2, 3, 4, 5];
+      const subArray = originalArray.slice(1, 4); // [2, 3, 4]
+      console.log(originalArray); // [1, 2, 3, 4, 5] (original untouched)
+      ```
+    - **Use `filter()` for removing elements immutably:**
+      ```javascript
+      const originalArray = [1, 2, 3, 4, 5];
+      const newArrayWithout3 = originalArray.filter((num) => num !== 3); // [1, 2, 4, 5]
+      console.log(originalArray); // [1, 2, 3, 4, 5] (original untouched)
+      ```
+
+2.  **When Iterating and Simultaneously Modifying the Array by Index:**
+    Modifying an array's length or indices while iterating over it with a `for` loop (especially a `for (let i = 0; i < array.length; i++)` loop) that depends on `i` and `array.length` can lead to skipped elements or infinite loops. If you must modify during iteration, iterate backwards or use methods that create new arrays.
+
+    ```javascript
+    // DANGEROUS PATTERN (AVOID!)
+    const numbers = [1, 2, 3, 4, 5];
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] % 2 === 0) {
+        numbers.splice(i, 1); // This shifts elements and changes length, messing up the loop counter
+      }
+    }
+    console.log(numbers); // Output: [1, 3, 5] (Oops! 4 was skipped because 5 moved into its spot)
+
+    // Better way to remove elements while iterating (if you must modify in place):
+    const numbersSafe = [1, 2, 3, 4, 5];
+    for (let i = numbersSafe.length - 1; i >= 0; i--) {
+      // Iterate backwards
+      if (numbersSafe[i] % 2 === 0) {
+        numbersSafe.splice(i, 1);
+      }
+    }
+    console.log(numbersSafe); // Output: [1, 3, 5] (Correct!)
+    ```
+
+---
+
+### Advanced Uses with Examples:
+
+**1. Implementing a "Move Element" Function:**
+
+You can use `splice()` twice to move an element from one position to another within the same array.
+
+```javascript
+function moveElement(arr, fromIndex, toIndex) {
+  if (
+    fromIndex === toIndex ||
+    fromIndex < 0 ||
+    toIndex < 0 ||
+    fromIndex >= arr.length ||
+    toIndex >= arr.length
+  ) {
+    return; // No change needed or invalid indices
+  }
+
+  // 1. Remove the element from its original position
+  const [movedElement] = arr.splice(fromIndex, 1);
+
+  // 2. Insert the element at the new position
+  arr.splice(toIndex, 0, movedElement);
+}
+
+const colors = ["red", "green", "blue", "yellow", "purple"];
+moveElement(colors, 1, 3); // Move 'green' (index 1) to after 'yellow' (new index 3)
+console.log(colors); // Output: ['red', 'blue', 'yellow', 'green', 'purple']
+
+moveElement(colors, 4, 0); // Move 'purple' (index 4) to the beginning
+console.log(colors); // Output: ['purple', 'red', 'blue', 'yellow', 'green']
+```
+
+**2. Implementing Undo/Redo (Simplified Concept):**
+
+While a full undo/redo stack is complex, `splice()` can be a core part of array state management for mutable operations.
+
+```javascript
+class HistoryManager {
+  constructor(initialState) {
+    this.states = [initialState.slice()]; // Store initial state as a copy
+    this.currentIndex = 0;
+  }
+
+  // Perform an operation that modifies the array in-place
+  performOperation(array, operationFn) {
+    // Clear any 'redo' states if a new operation is performed
+    if (this.currentIndex < this.states.length - 1) {
+      this.states.splice(this.currentIndex + 1);
+    }
+
+    const newState = array.slice(); // Create a copy for the new state
+    operationFn(newState); // Apply the operation to the copy
+    this.states.push(newState);
+    this.currentIndex++;
+    return newState;
+  }
+
+  undo() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      return this.states[this.currentIndex].slice(); // Return a copy of the previous state
+    }
+    return this.states[0].slice(); // Return the initial state if no more undo
+  }
+
+  redo() {
+    if (this.currentIndex < this.states.length - 1) {
+      this.currentIndex++;
+      return this.states[this.currentIndex].slice(); // Return a copy of the next state
+    }
+    return this.states[this.currentIndex].slice(); // Return current state if no more redo
+  }
+}
+
+let data = ["A", "B", "C"];
+const history = new HistoryManager(data);
+
+console.log("Initial:", data); // Initial: ['A', 'B', 'C']
+
+// Operation 1: Add D
+data = history.performOperation(data, (arr) => arr.splice(3, 0, "D"));
+console.log("After Add D:", data); // After Add D: ['A', 'B', 'C', 'D']
+
+// Operation 2: Replace B with X
+data = history.performOperation(data, (arr) => arr.splice(1, 1, "X"));
+console.log("After Replace B:", data); // After Replace B: ['A', 'X', 'C', 'D']
+
+data = history.undo();
+console.log("Undo 1:", data); // Undo 1: ['A', 'B', 'C', 'D']
+
+data = history.undo();
+console.log("Undo 2:", data); // Undo 2: ['A', 'B', 'C']
+
+data = history.redo();
+console.log("Redo 1:", data); // Redo 1: ['A', 'B', 'C', 'D']
+
+data = history.performOperation(data, (arr) => arr.splice(0, 1)); // New operation, remove A
+console.log("After Remove A (new branch):", data); // After Remove A (new branch): ['B', 'C', 'D']
+
+data = history.undo();
+console.log("Undo New Branch:", data); // Undo New Branch: ['A', 'B', 'C', 'D']
+
+data = history.redo();
+console.log("Redo New Branch:", data); // Redo New Branch: ['B', 'C', 'D']
+```
+
+**3. Efficiently Emptying an Array:**
+
+While `arr.length = 0` is the fastest and most common way to empty an array, `splice()` can also be used.
+
+```javascript
+let myArr = [1, 2, 3, 4, 5];
+myArr.splice(0, myArr.length); // Remove all elements starting from index 0
+console.log(myArr); // Output: []
+```
+
+`splice()` is a cornerstone for dynamic array manipulation in JavaScript. Its in-place modification makes it distinct from immutable methods like `slice()`, `map()`, and `filter()`. Understanding when to use each is key to writing effective and maintainable JavaScript code.
