@@ -1,3 +1,14 @@
-const dates = ["2025-01-01", "2023-01-01"];
-dates.sort((a, b) => a.localeCompare(b));
-console.log(dates);
+const allUsers = [
+  { id: 101, username: "user_a" },
+  { id: 102, username: "user_b" },
+  { id: 103, username: "user_c" },
+];
+
+function getUserById(userId, userList) {
+  return userList.find((user) => user.id === userId);
+}
+
+const specificUser = getUserById(102, allUsers);
+console.log(specificUser);
+const nonExistentUser = getUserById(999, allUsers);
+console.log(nonExistentUser);

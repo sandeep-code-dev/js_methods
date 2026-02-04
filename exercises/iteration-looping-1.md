@@ -948,8 +948,6 @@ console.log(sentence.includes("fox", 10)); // Output: true (search starts at ind
 
 You can combine `includes()` with other logic to create basic authorization checks.
 
-<!-- TODO do it when some() method learnt -->
-
 ```javascript
 //includes()
 const currentUserRoles = ["admin", "editor", "viewer"];
@@ -988,8 +986,6 @@ console.log(includesCaseInsensitive(articleText, "python")); // Output: false
 
 To see if two arrays share _any_ common elements.
 
-<!-- TODO come back when learn some() method. -->
-
 ```javascript
 function hasCommonElement(arr1, arr2) {
   return arr1.some((element) => arr2.includes(element));
@@ -1014,8 +1010,6 @@ console.log(
 **4. Filtering an Array Based on Keywords (Substring Matching):**
 
 `includes()` is useful within a `filter()` method when searching through string properties of objects.
-
-<!-- TODO come back when learn some() method. -->
 
 ```javascript
 const posts = [

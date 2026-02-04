@@ -189,7 +189,6 @@ console.log(hotSpot); // Output: 22 (at index 1)
 
 2.  **When You Only Need to Check for Existence (Not the Element Itself):**
     If you just need a boolean indicating if _any_ element satisfies a condition, `some()` is more semantically appropriate and clearer. `find()` would return `undefined` or the element, which then requires an additional check (`if (element)`).
-
     - **Use `some()` instead:**
 
       ```javascript
@@ -206,7 +205,6 @@ console.log(hotSpot); // Output: 22 (at index 1)
 
 3.  **When You Need to Find the Index of the Element:**
     If you require the position (index) of the found element, `findIndex()` is the correct method.
-
     - **Use `findIndex()` instead:**
       ```javascript
       const todos = ["Groceries", "Clean room", "Walk dog"];
@@ -216,7 +214,6 @@ console.log(hotSpot); // Output: 22 (at index 1)
 
 4.  **When You Need All Elements that Pass a Test:**
     If you want a new array containing _all_ the elements that satisfied the condition, `filter()` is the appropriate method.
-
     - **Use `filter()` instead:**
       ```javascript
       const temperatures = [15, 22, 18, 25, 20, 30];

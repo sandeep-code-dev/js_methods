@@ -68,9 +68,15 @@ These are new methods that provide non-mutating alternatives to existing mutatin
 
 These methods are called directly on the `Array` constructor itself, not on an array instance.
 
-1.  **`Array.isArray()`**: Determines whether the passed value is an `Array`.
-2.  **`Array.from()`**: Creates a new, shallow-copied `Array` instance from an array-like or iterable object.
-3.  **`Array.of()`**: Creates a new `Array` instance with a variable number of arguments, regardless of number or type of the arguments. (Useful for avoiding `new Array()` quirks with single number arguments).
+1.  **`Array`**: Learn about what an array is.
+2.  **`Array.isArray()`**: Determines whether the passed value is an `Array`.
+3.  **`Array.from()`**: Creates a new, shallow-copied `Array` instance from an array-like or iterable object.
+4.  **`Array.of()`**: Creates a new `Array` instance with a variable number of arguments, regardless of number or type of the arguments. (Useful for avoiding `new Array()` quirks with single number arguments).
+
+---
+
+1.  **`new`**: Learn about what new is.
+1.  **`Object`**: Learn about what object is.
 
 ---
 

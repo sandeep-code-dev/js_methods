@@ -119,7 +119,6 @@ console.log(items); // Output: ['Y', 'Y', 'Y', 'Z', 'Z']
 
 1.  **When You Need an Immutable Operation (Don't Modify Original Array):**
     `fill()` is a mutable method, meaning it directly changes the array on which it's called. If your application architecture relies on immutability (e.g., in React state management, Redux), you should create a shallow copy first.
-
     - **Create a copy before filling:**
       ```javascript
       const originalArray = [1, 2, 3, 4, 5];
@@ -130,7 +129,6 @@ console.log(items); // Output: ['Y', 'Y', 'Y', 'Z', 'Z']
 
 2.  **When Filling with Objects (Shallow Copy Pitfall):**
     If you fill an array with object literals, arrays, or other non-primitive values, `fill()` will assign the _same reference_ to all filled slots. This means modifying one of these objects will affect all other slots pointing to the same object.
-
     - **Use `map()` for unique object instances:**
 
       ```javascript
@@ -146,8 +144,8 @@ console.log(items); // Output: ['Y', 'Y', 'Y', 'Z', 'Z']
       ```
 
 3.  **When Populating an Array with Dynamic or Sequential Values:**
-    `fill()` is for static values. If you need to populate an array with values that depend on their index or a sequence, use `Array.from()` or `map()`.
-
+`fill()` is for static values. If you need to populate an array with values that depend on their index or a sequence, use `Array.from()` or `map()`.
+<!-- NOTE: comeback when Array.from Done
     - **Use `Array.from()` for sequential/dynamic values:**
 
       ```javascript
@@ -168,6 +166,8 @@ console.log(items); // Output: ['Y', 'Y', 'Y', 'Z', 'Z']
 ### Advanced Uses with Examples:
 
 **1. Creating a Fixed-Size Buffer/Pool (e.g., for object reuse):**
+
+<!-- NOTE comeback when classes are done -->
 
 ```javascript
 class ObjectPool {
@@ -243,6 +243,8 @@ console.log(
 
 **2. Clearing a Section of a Pre-allocated Array (e.g., for a board game):**
 
+<!-- NOTE Array.from comeback when learnt -->
+
 ```javascript
 const chessBoard = Array(64).fill(null); // Initialize 8x8 board
 
@@ -271,6 +273,8 @@ console.log(
 **3. Initializing a Matrix (2D Array) (Careful with Shallow Copy\!):**
 
 You can use `fill()` to initialize rows, but then `map()` to ensure each row is a _unique_ array.
+
+<!-- NOTE Array.from comeback when learnt -->
 
 ```javascript
 // Creates a 3x3 matrix initialized with 0s
