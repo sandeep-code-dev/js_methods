@@ -93,24 +93,34 @@ console.log(fullyCleaned); // Output: [1, 3, 4, 6]
     If you're traversing a tree or graph and collecting data that ends up in a nested array format, `flat()` can make it easier to process the final list.
 
     ```javascript
-    // Imagine a function that gathers file paths recursively
-    function getFilePaths(folder) {
+    // Add a second argument 'parentPath' defaulting to empty string
+    function getFilePaths(folder, parentPath = "") {
       let paths = [];
 
-      // 1. Get files if they exist
+      // Calculate the current directory path
+      // If there's a parentPath, join it with current name; otherwise just use current name.
+      const currentDir = parentPath
+        ? `${parentPath}/${folder.name}`
+        : folder.name;
+
+      // 1. Get files (Use currentDir instead of folder.name)
       if (folder.files) {
-        const filePaths = folder.files.map((file) => `${folder.name}/${file}`);
+        const filePaths = folder.files.map((file) => `${currentDir}/${file}`);
         paths = paths.concat(filePaths);
       }
 
-      // 2. Get subfolders if they exist (Don't use 'else' or return early!)
+      // 2. Get subfolders
       if (folder.subfolders) {
-        const subPaths = folder.subfolders.map((sub) => getFilePaths(sub));
+        // PASS THE currentDir DOWN to the children
+        const subPaths = folder.subfolders.map((sub) =>
+          getFilePaths(sub, currentDir),
+        );
         paths = paths.concat(subPaths);
       }
 
       return paths;
     }
+
     const fileSystem = {
       name: "root",
       subfolders: [
@@ -123,7 +133,9 @@ console.log(fullyCleaned); // Output: [1, 3, 4, 6]
       ],
     };
 
-    const allPaths = getFilePaths(fileSystem).flat(Infinity); // Flatten all collected paths
+    // You don't need to pass the second argument for the first call
+    const allPaths = getFilePaths(fileSystem).flat(Infinity);
+
     console.log(allPaths);
     /* Output:
     [
@@ -351,6 +363,8 @@ console.log(allTags);
 **1. Generating All Permutations/Combinations of Nested Data:**
 
 If you have a collection where each item can generate multiple sub-items, and you want a flat list of all possible combinations.
+
+<!-- NOTE learn again and again i still not getting it -->
 
 ```javascript
 //flatMap
@@ -1440,6 +1454,7 @@ const totalValueOfStore = store.reduce(
 );
 
 console.log(totalValueOfStore);
+//output: 14000
 ```
 
 - **Creating a pipeline of functions (more advanced):**
@@ -1626,6 +1641,7 @@ console.log(reversedArray);
 const reversedArray = strArray.reduce((acc, current) => {
   return [current].concat(acc);
 }, []);
+// Output: [ 'o', 'l', 'l', 'e', 'h' ]
 ```
 
 **5. Calculate Average**

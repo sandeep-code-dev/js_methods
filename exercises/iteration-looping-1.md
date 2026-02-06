@@ -1601,7 +1601,7 @@ const domain = url.slice(8, 23);
 3.  **Converting Array-like Objects to Arrays:**
     `slice.call()` (or `Array.prototype.slice.call()`) is a classic technique to convert array-like objects (like `arguments` in old JavaScript functions, or NodeList from DOM queries) into true arrays.
 
-<!-- TODO come back when reduce() function is done. -->
+<!-- NOTE comeback when Array.prototype is learnt -->
 
 ```javascript
 // In an old-style function using 'arguments'
@@ -1710,9 +1710,9 @@ console.log(recentSearches.get()); // ["React", "Vue", "Angular"] (JavaScript wa
 
 **2. Implementing a Circular Buffer/Carousel:**
 
-`slice()` can be used to simulate a circular buffer where elements wrap around.
+<!-- NOTE Advanced topice learn when you are doing actual programming -->
 
-<!-- TODO come back when push method is done. -->
+`slice()` can be used to simulate a circular buffer where elements wrap around.
 
 ```javascript
 function getCircularSlice(arr, startIdx, length) {
@@ -1887,8 +1887,6 @@ console.log(queryString);
 4.  **Reversing a String (by combining with `split()`):**
     A common trick to reverse a string.
 
-    <!-- TODO come back when split and reverse are done -->
-
     ```javascript
     const originalString = "hello";
 
@@ -1997,6 +1995,8 @@ Product C: 75 units
 
 **3. Pretty Printing JSON (Simplified):**
 
+<!-- NOTE comeback when JSON.stringify methods are done. -->
+
 While `JSON.stringify` is for actual JSON, you can use `join()` for custom, simpler string representations of array data.
 
 ```javascript
@@ -2025,6 +2025,8 @@ Last Login: 2025-07-26
 ```
 
 **4. Creating Breadcrumbs for Navigation:**
+
+<!-- NOTE Advanced Programming method -->
 
 ```javascript
 const pagePath = ["Home", "Products", "Electronics", "Laptops"];

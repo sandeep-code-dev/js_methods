@@ -118,21 +118,22 @@ console.log(Object.prototype.toString.call(new Date())); // Output: "[object Dat
 
 5.  **Type Checking (Advanced, using `Object.prototype.toString.call()`):**
     This is a reliable way to get the internal `[[Class]]` property of an object, which is useful for robust type checking, especially for distinguishing between different types of objects (e.g., `Array` vs. `null`).
+6.  <!-- NOTE comeback when object.prototype is done -->
 
-    ```javascript
-    function getType(value) {
-      return Object.prototype.toString.call(value).slice(8, -1);
-    }
+```javascript
+function getType(value) {
+  return Object.prototype.toString.call(value).slice(8, -1);
+}
 
-    console.log(getType([])); // Output: "Array"
-    console.log(getType({})); // Output: "Object"
-    console.log(getType(new Date())); // Output: "Date"
-    console.log(getType(null)); // Output: "Null"
-    console.log(getType(undefined)); // Output: "Undefined"
-    console.log(getType(123)); // Output: "Number"
-    console.log(getType("hello")); // Output: "String"
-    console.log(getType(true)); // Output: "Boolean"
-    ```
+console.log(getType([])); // Output: "Array"
+console.log(getType({})); // Output: "Object"
+console.log(getType(new Date())); // Output: "Date"
+console.log(getType(null)); // Output: "Null"
+console.log(getType(undefined)); // Output: "Undefined"
+console.log(getType(123)); // Output: "Number"
+console.log(getType("hello")); // Output: "String"
+console.log(getType(true)); // Output: "Boolean"
+```
 
 ---
 
@@ -167,16 +168,16 @@ console.log(Object.prototype.toString.call(new Date())); // Output: "[object Dat
       ```
 
 3.  **For Debugging Plain Objects:**
-    `myObject.toString()` giving `"[object Object]"` is rarely useful for debugging. For inspecting object content, `JSON.stringify()` or `console.log()` are far superior.
-    - **Use `JSON.stringify()` or `console.log()`:**
+    `myObject.toString()` giving `"[object Object]"` is rarely useful for debugging. For inspecting object content, `JSON.stringify()` or `console.log()` are far superior. - **Use `JSON.stringify()` or `console.log()`:**
+    <!-- NOTE comeback when json.stringify is done -->
 
-      ```javascript
-      const user = { name: "Bob", id: 123 };
-      console.log(user.toString()); // "[object Object]" (unhelpful)
+    ```javascript
+    const user = { name: "Bob", id: 123 };
+    console.log(user.toString()); // "[object Object]" (unhelpful)
 
-      console.log(JSON.stringify(user)); // '{"name":"Bob","id":123}' (useful JSON string)
-      console.log(user); // Displays object content in console (most useful)
-      ```
+    console.log(JSON.stringify(user)); // '{"name":"Bob","id":123}' (useful JSON string)
+    console.log(user); // Displays object content in console (most useful)
+    ```
 
 4.  **For Converting `null` or `undefined` to Specific Strings:**
     While `String(null)` and `String(undefined)` work, direct string concatenation often handles them correctly. However, if you need them to be, for example, an empty string `""` or "N/A", you need explicit handling.
@@ -323,8 +324,26 @@ console.log(percentage.toLocaleString("en-US", { style: "percent" })); // Output
 
 // Unit
 const length = 100;
-console.log(length.toLocaleString("en-US", { style: "unit", unit: "meter" })); // Output: 100 meters
-console.log(length.toLocaleString("fr-FR", { style: "unit", unit: "meter" })); // Output: 100 mètres
+console.log(length.toLocaleString("en-US", { style: "unit", unit: "meter" })); // Output: 100 m
+console.log(length.toLocaleString("fr-FR", { style: "unit", unit: "meter" })); // Output: 100 m
+
+console.log(
+  length.toLocaleString("en-US", {
+    style: "unit",
+    unit: "meter",
+    unitDisplay: "long", // This forces the full word
+  }),
+);
+// Output: 100 meters
+
+console.log(
+  length.toLocaleString("fr-FR", {
+    style: "unit",
+    unit: "meter",
+    unitDisplay: "long",
+  }),
+);
+// Output: 100 mètres
 ```
 
 ---
