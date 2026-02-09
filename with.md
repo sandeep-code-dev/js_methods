@@ -150,7 +150,6 @@ console.log(data); // Original array remains unchanged: [10, 20]
 
 1.  **When You Intend to Mutate the Original Array:**
     If you genuinely want to modify the array in place and don't care about preserving the original (or you actively want to modify it), direct bracket assignment (`arr[index] = value`) is simpler and more performant.
-
     - **Use `arr[index] = value` instead:**
       ```javascript
       const pendingTasks = ["Write report", "Email client"];
@@ -161,7 +160,6 @@ console.log(data); // Original array remains unchanged: [10, 20]
 
 2.  **When Browser Compatibility for Older Environments is a Concern (Without Polyfill):**
     `with()` is an ES2023 feature. If you're targeting older browsers or environments that don't transpile newer JavaScript features, `with()` will not be available. In such cases, the array spread syntax pattern (`[...arr.slice(0, index), newValue, ...arr.slice(index + 1)]`) is the compatible solution.
-
     - **Fallback for older environments:**
       ```javascript
       const myArr = [1, 2, 3];
@@ -177,7 +175,6 @@ console.log(data); // Original array remains unchanged: [10, 20]
 
 3.  **When Replacing Multiple Elements or Inserting/Deleting:**
     `with()` is specifically for replacing a _single_ element. If you need to replace multiple elements, insert elements, or delete elements, `toSpliced()` is the immutable method for that.
-
     - **Use `toSpliced()` instead:**
       ```javascript
       const items = ["a", "b", "c", "d"];
@@ -189,7 +186,6 @@ console.log(data); // Original array remains unchanged: [10, 20]
 
 4.  **When You Need to Transform All Elements:**
     If the transformation applies to every element (e.g., doubling all numbers, capitalizing all strings), `map()` is the more appropriate and often more readable choice.
-
     - **Use `map()` instead:**
       ```javascript
       const prices = [10, 20, 30];
@@ -234,6 +230,8 @@ handleInputChange("consent", true);
 **2. Implementing Immutable Board Game States:**
 
 For turn-based games where modifying a board state must not affect previous states for undo/redo or AI exploration.
+
+<!-- NOTE Advanced problem learn later on -->
 
 ```javascript
 const initialBoard = [

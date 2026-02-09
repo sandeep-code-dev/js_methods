@@ -2,3 +2,7 @@ body {
   font-family: Arial;
   color: #2aa198;
 }
+h1 {
+  color: red;
+  font-size: 72px;
+}

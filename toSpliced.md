@@ -126,15 +126,18 @@ console.log(beforeLastLetter); // Output: ["a", "b", "c", "d", "x", "y", "e"]
     ```javascript
     const shoppingCart = ["Milk", "Bread", "Eggs", "Cheese", "Milk"];
 
-    // Add 'Butter' after 'Bread', remove the last 'Milk', then get unique items sorted
     const finalCart = shoppingCart
-      .toSpliced(shoppingCart.indexOf("Bread") + 1, 0, "Butter") // Add Butter
-      .toSpliced(shoppingCart.lastIndexOf("Milk"), 1) // Remove last Milk
-      .toSorted() // Sort
-      .filter((item, index, arr) => arr.indexOf(item) === index); // Get unique
+      .toSpliced(shoppingCart.indexOf("Bread") + 1, 0, "Butter") // Adds 'Butter' at index 2
+      // FIX: Add +1 to the index because 'Butter' pushed the rest of the array to the right
+      .toSpliced(shoppingCart.lastIndexOf("Milk") + 1, 1)
+      .toSorted()
+      .filter((item, index, arr) => arr.indexOf(item) === index);
 
-    console.log("Final Cart:", finalCart); // Output: ["Bread", "Butter", "Cheese", "Eggs", "Milk"]
-    console.log("Original Cart:", shoppingCart); // Original is unchanged!
+    console.log("Final Cart:", finalCart);
+    // Output: [ 'Bread', 'Butter', 'Cheese', 'Eggs', 'Milk' ]
+
+    console.log("Original Cart:", shoppingCart);
+    // Output: [ 'Milk', 'Bread', 'Eggs', 'Cheese', 'Milk' ]
     ```
 
 3.  **Readability and Clarity:**
@@ -146,7 +149,6 @@ console.log(beforeLastLetter); // Output: ["a", "b", "c", "d", "x", "y", "e"]
 
 1.  **When You Intend to Mutate the Original Array:**
     If you genuinely want to modify the array in place and don't care about preserving the original (or you actively want to modify it), `splice()` is more direct and slightly more performant (as it doesn't create a new array).
-
     - **Use `splice()` instead:**
       ```javascript
       const pendingTasks = ["Write report", "Email client", "Call supplier"];
@@ -157,7 +159,6 @@ console.log(beforeLastLetter); // Output: ["a", "b", "c", "d", "x", "y", "e"]
 
 2.  **When Browser Compatibility for Older Environments is a Concern (Without Polyfill):**
     `toSpliced()` is an ES2023 feature. If you're targeting older browsers or environments that don't transpile newer JavaScript features, `toSpliced()` will not be available. In such cases, you'd typically use a combination of `slice()` and array spread syntax, or manual array reconstruction for immutable operations.
-
     - **Fallback for older environments (for removing elements):**
       ```javascript
       const myArr = [1, 2, 3, 4];

@@ -137,7 +137,6 @@ console.log(data); // Output: [10, 10, 20, 30, 50]
 
 1.  **When You Need an Immutable Operation (Don't Modify Original Array):**
     `copyWithin()` is a mutating method. If your application requires preserving the original array (common in functional programming and state management in frameworks like React/Redux), `copyWithin()` is unsuitable.
-
     - **Use `slice()` and `concat()` or spread syntax (`...`) for immutability:**
 
       ```javascript
@@ -183,6 +182,8 @@ console.log(data); // Output: [10, 10, 20, 30, 50]
 **1. Implementing a Simple Image Carousel (Circular Shift):**
 
 Imagine an array of image URLs. When you click "next," the first image moves to the end. `copyWithin()` can simulate this efficiently.
+
+<!-- NOTE advanced problem learn again and again -->
 
 ```javascript
 const imageUrls = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg"];

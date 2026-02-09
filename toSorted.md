@@ -161,7 +161,6 @@ console.log(users[1]); // Output: { name: 'Alice', age: 26 } (Original array's o
 
 1.  **When You Intend to Mutate the Original Array:**
     If you genuinely want to sort the array in place and don't care about preserving the original order (or you actively want to modify it), `sort()` is more direct and slightly more performant (as it doesn't create a new array).
-
     - **Use `sort()` instead:**
       ```javascript
       const tasks = ["Buy groceries", "Walk dog", "Pay bills"];
@@ -172,7 +171,6 @@ console.log(users[1]); // Output: { name: 'Alice', age: 26 } (Original array's o
 
 2.  **When Browser Compatibility for Older Environments is a Concern (Without Polyfill):**
     `toSorted()` is an ES2023 feature. If you're targeting older browsers or environments that don't transpile newer JavaScript features, `toSorted()` will not be available. In such cases, the `[...arr].sort()` or `arr.slice().sort()` pattern is the compatible solution.
-
     - **Fallback for older environments:**
       ```javascript
       const myArr = [1, 3, 2];
@@ -270,7 +268,17 @@ const customSortedItems = mixedItems.toSorted((a, b) => {
 });
 
 console.log(customSortedItems);
-/* Output:
+/* Output (Actual Output)
+[
+  null,      { id: 1 },
+  true,      false,
+  5,         10,
+  'apple',   'banana',
+  undefined
+]
+*/
+
+/* Output: (Output that came with example from Gemini)
 [
   undefined,
   null,          // typeof null is 'object', comes after undefined due to typeOrder

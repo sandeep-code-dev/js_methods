@@ -36,8 +36,8 @@ These methods change the array they are called on.
 5. ✅ **`splice()`**: Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place. Returns the removed elements.
 6. ✅ **`sort()`**: Sorts the elements of an array in place and returns the sorted array. The default sort is lexicographical.
 7. ✅ **`reverse()`**: Reverses the order of the elements in an array in place.
-8. **`fill()`**: Fills all the elements of an array from a start index to an end index with a static value.
-9. **`copyWithin()`**: Copies part of an array to another location in the same array and returns it, without modifying its length.
+8. ✅ **`fill()`**: Fills all the elements of an array from a start index to an end index with a static value.
+9. ✅ **`copyWithin()`**: Copies part of an array to another location in the same array and returns it, without modifying its length.
 10. \*\* learn set and new at the end
 
 #### III. Accessor Methods (Do Not Modify the Original Array)
@@ -59,10 +59,10 @@ These methods return new arrays or values without changing the original array.
 
 These are new methods that provide non-mutating alternatives to existing mutating methods.
 
-1.  **`toReversed()`**: Returns a new array with the elements in reversed order. (Non-mutating alternative to `reverse()`)
-2.  **`toSorted()`**: Returns a new array with the elements sorted. (Non-mutating alternative to `sort()`)
-3.  **`toSpliced()`**: Returns a new array with some elements removed and/or replaced at a given index. (Non-mutating alternative to `splice()`)
-4.  **`with()`**: Returns a new array with the element at the given index replaced with a new value. (Non-mutating way to update an element by index)
+1. ✅ **`toReversed()`**: Returns a new array with the elements in reversed order. (Non-mutating alternative to `reverse()`)
+2. ✅ **`toSorted()`**: Returns a new array with the elements sorted. (Non-mutating alternative to `sort()`)
+3. ✅ **`toSpliced()`**: Returns a new array with some elements removed and/or replaced at a given index. (Non-mutating alternative to `splice()`)
+4. **`with()`**: Returns a new array with the element at the given index replaced with a new value. (Non-mutating way to update an element by index)
 
 #### V. Static Methods (Called on `Array` constructor)
 

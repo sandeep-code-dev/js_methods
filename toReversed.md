@@ -120,7 +120,6 @@ console.log(users[1]); // Output: { id: 2, name: 'Bobby' } (Original array's obj
 
 1.  **When You Intend to Mutate the Original Array:**
     If you genuinely want to reverse the array in place and don't care about preserving the original order (or you actively want to modify it), `reverse()` is more direct and slightly more performant (as it doesn't create a new array).
-
     - **Use `reverse()` instead:**
       ```javascript
       const tasks = ["Buy groceries", "Walk dog", "Pay bills"];
@@ -131,7 +130,6 @@ console.log(users[1]); // Output: { id: 2, name: 'Bobby' } (Original array's obj
 
 2.  **When Browser Compatibility for Older Environments is a Concern (Without Polyfill):**
     `toReversed()` is an ES2023 feature. If you're targeting older browsers or environments that don't transpile newer JavaScript features, `toReversed()` will not be available. In such cases, the `[...arr].reverse()` or `arr.slice().reverse()` pattern is the compatible solution.
-
     - **Fallback for older environments:**
       ```javascript
       const myArr = [1, 2, 3];
@@ -180,6 +178,8 @@ console.log("\nOriginal feed still intact:", activityFeed);
 
 **2. Implementing Undo/Redo Stacks (Immutable History):**
 
+<!-- NOTE do it when react is react router is done. -->
+
 While a full undo/redo system is complex, `toReversed()` can be useful when reconstructing states or displaying history in a particular order without affecting the underlying history array.
 
 ```javascript
@@ -216,6 +216,8 @@ console.log("\nOriginal history remains:", appStateHistory);
 **3. Preparing Data for Specific UI Components:**
 
 Some UI libraries or components might expect data in a specific order (e.g., for a historical chart where the X-axis needs to be reversed).
+
+<!-- NOTE  do it when react and react router is done.-->
 
 ```javascript
 const sensorReadings = [
