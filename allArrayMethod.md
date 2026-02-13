@@ -62,7 +62,7 @@ These are new methods that provide non-mutating alternatives to existing mutatin
 1. ✅ **`toReversed()`**: Returns a new array with the elements in reversed order. (Non-mutating alternative to `reverse()`)
 2. ✅ **`toSorted()`**: Returns a new array with the elements sorted. (Non-mutating alternative to `sort()`)
 3. ✅ **`toSpliced()`**: Returns a new array with some elements removed and/or replaced at a given index. (Non-mutating alternative to `splice()`)
-4. **`with()`**: Returns a new array with the element at the given index replaced with a new value. (Non-mutating way to update an element by index)
+4. ✅ **`with()`**: Returns a new array with the element at the given index replaced with a new value. (Non-mutating way to update an element by index)
 
 #### V. Static Methods (Called on `Array` constructor)
 
@@ -75,8 +75,8 @@ These methods are called directly on the `Array` constructor itself, not on an a
 
 ---
 
-1.  **`new`**: Learn about what new is.
-1.  **`Object`**: Learn about what object is.
+1. ✅ **`new`**: Learn about what new is.
+1. ✅ **`Object`**: Learn about what object is.
 
 ---
 

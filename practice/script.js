@@ -1,18 +1,13 @@
-const currentSelection = ["apple", "banana", "orange"];
+const cache = ["itemA", "itemB", "itemC"];
+const MAX_CACHE_SIZE = 3;
 
-function toggleSelextion(item, selectedItems) {
-  const itemIndex = selectedItems.indexOf(item);
-  if (itemIndex !== -1) {
-    return selectedItems.toSpliced(itemIndex, 1);
+function updateCache(newEntry, currentCache) {
+  const existingIndex = currentCache.indexOf(newEntry);
+  let updatedCache;
+  if (existingIndex !== -1) {
+    updatedCache = currentCache.toSpliced(existingIndex, 1);
+    updatedCache = updatedCache.toSpliced(updatedCache.length, 0, newEntry);
   } else {
-    return selectedItems.toSpliced(selectedItems, 0, item);
+    updatedCache = updatedCache.toSpliced(currentCache.length, 0, newEntry);
   }
 }
-let userSelection = ["Product A", "Product C"];
-userSelection = toggleSelextion("Product A", userSelection);
-userSelection = toggleSelextion("Product B", userSelection);
-console.log("After removing A:", userSelection);
-
-console.log(
-  "Original selections are implicitly preserved due to immutability.",
-);
