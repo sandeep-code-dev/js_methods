@@ -1186,7 +1186,67 @@ console.log(Object.prototype.toString.call(new Date())); // Output: "[object Dat
     console.log(displayVal); // "N/A"
     ```
 
+This is a classic JavaScript "gotcha" that comes down to the difference between calling a **global conversion function** versus trying to access a **method on an object**.
+
+Here is the breakdown of why one succeeds and the other fails.
+
 ---
+
+### 1. Why `String(val1)` works
+
+When you call the global `String()` function, you are invoking a built-in type conversion tool. It does **not** rely on the value having methods.
+
+Instead, it follows a specific set of rules defined in the JavaScript specification (ECMAScript):
+
+1. **Check the value:** Is it `null`?
+2. **If yes:** Return the string `"null"` immediately.
+3. **If no:** Is it `undefined`?
+4. **If yes:** Return the string `"undefined"`.
+5. **Else:** Proceed to call `.toString()` on the object.
+
+Because `String()` has a manual check for `null` built into it, it safely returns the string `"null"`.
+
+```javascript
+String(null); // "null"
+String(undefined); // "undefined"
+```
+
+### 2. Why `val1.toString()` fails
+
+When you write `val1.toString()`, the JavaScript engine tries to do two things:
+
+1. **Box the value:** If the value is a primitive (like a number or boolean), JS wraps it in a temporary object so you can call methods on it.
+2. **Lookup the method:** It looks up the `.toString` function on that object's prototype chain.
+
+**The Problem:** `null` and `undefined` are special primitives that **do not have object wrappers**. They possess no properties, no methods, and no prototype chain. They are effectively "empty" values.
+
+Therefore, trying to access `.toString` (or any property) on `null` triggers a **TypeError** immediately.
+
+```javascript
+const val1 = null;
+val1.toString();
+// Uncaught TypeError: Cannot read properties of null (reading 'toString')
+```
+
+---
+
+### Summary Comparison
+
+| Feature                | `String(val)`                 | `val.toString()`          |
+| ---------------------- | ----------------------------- | ------------------------- |
+| **Type**               | Global Function call          | Object Method call        |
+| **Mechanism**          | Manual type conversion (safe) | Prototype lookup (unsafe) |
+| **Null handling**      | Returns `"null"`              | Throws `TypeError`        |
+| **Undefined handling** | Returns `"undefined"`         | Throws `TypeError`        |
+
+### A Safer Alternative
+
+If you want to convert a value to a string but aren't sure if it might be `null` or `undefined`, the modern and idiomatic way is often to use **Template Literals**, which function similarly to `String()`:
+
+```javascript
+const val1 = null;
+console.log(`${val1}`); // Output: "null" (No error)
+```
 
 ### Advanced Uses with Examples:
 
