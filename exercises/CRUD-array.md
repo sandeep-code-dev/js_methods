@@ -9,15 +9,17 @@ _Performing operations using only Indexing, Spread Syntax (`...`), Destructuring
 
 You can add items using the **Spread Operator** (to create a new array) or by assigning directly to an index (to mutate).
 
-### Add to End
+### Add 3 to End of the array
 
 ```javascript
 const numbers = [1, 2];
 
 // Method 1: Spread Syntax (New Array)
+
 const newNumbers = [...numbers, 3];
 
 // Method 2: Index Assignment (Mutates)
+
 numbers[numbers.length] = 3;
 
 // Result: [1, 2, 3]
@@ -27,9 +29,11 @@ numbers[numbers.length] = 3;
 ### Add to Start
 
 ```javascript
+// add "a" in the start of the array
 const queue = ["b", "c"];
 
 // Spread Syntax (New Array)
+
 const newQueue = ["a", ...queue];
 
 // Result: ['a', 'b', 'c']
@@ -40,7 +44,8 @@ const newQueue = ["a", ...queue];
 ```javascript
 const [first, second] = ["Start", "End"];
 
-// Insert 'Middle' between them
+// Insert 'Middle' between above array.
+
 const combined = [first, "Middle", second];
 
 // Result: ['Start', 'Middle', 'End']
@@ -58,9 +63,11 @@ Use **Bracket Notation** for specific indices or **Destructuring** to unpack ite
 const colors = ["Red", "Green", "Blue"];
 
 // Read the first item
+
 const firstColor = colors[0];
 
 // Read the last item dynamically
+
 const lastColor = colors[colors.length - 1];
 ```
 
@@ -70,6 +77,7 @@ const lastColor = colors[colors.length - 1];
 const coords = [10, 20, 30];
 
 // Extract first two items
+
 const [x, y] = coords;
 
 console.log(x); // 10
@@ -82,6 +90,7 @@ console.log(y); // 20
 const data = [2023, 12, 25];
 
 // Skip the first two items, get the third
+
 const [, , day] = data;
 
 console.log(day); // 25
@@ -99,6 +108,7 @@ The most direct way to update an array item is via **Index Assignment**.
 const users = ["Alice", "Bob", "Charlie"];
 
 // Overwrite index 1
+
 users[1] = "Bobby";
 
 // Result: ['Alice', 'Bobby', 'Charlie']
@@ -112,7 +122,8 @@ You can swap two array elements (or variables) without a temporary variable.
 let a = 1;
 let b = 2;
 
-// Swap values
+// Swap values make a, b and b, a.
+
 [a, b] = [b, a];
 
 // Result: a = 2, b = 1
@@ -132,6 +143,7 @@ Directly modifying the `length` property deletes items from the end of the array
 const stack = [10, 20, 30, 40];
 
 // Cut the length down to 2
+
 stack.length = 2;
 
 // Result: [10, 20] (30 and 40 are deleted)
@@ -145,6 +157,7 @@ Use Destructuring to separate the first item from the rest.
 const list = ["First", "Second", "Third"];
 
 // Assign 'First' to 'removed', and the rest to 'remaining'
+
 const [removed, ...remaining] = list;
 
 // Result (remaining): ['Second', 'Third']
@@ -156,6 +169,7 @@ const [removed, ...remaining] = list;
 const data = [1, 2, 3, 4, 5];
 
 // Set length to 0
+
 data.length = 0;
 
 // Result: []
@@ -191,7 +205,13 @@ Instead of pushing to the existing array, create a new array that contains all t
 ```javascript
 const fruits = ["Apple", "Banana"];
 
+// there are three ways to put the element in the back of the array.
+
 // Old way: fruits.push('Cherry')
+fruits.push("Cherry");
+// with length property;
+fruits[fruits.length] = "Cherry";
+// with spread array and creating the new array.
 const newFruits = [...fruits, "Cherry"];
 
 console.log(newFruits); // ['Apple', 'Banana', 'Cherry']
@@ -203,6 +223,7 @@ console.log(newFruits); // ['Apple', 'Banana', 'Cherry']
 Spread the existing array _after_ the new element.
 
 ```javascript
+// put 1 in the beginning of the array.
 const numbers = [2, 3, 4];
 
 // Old way: numbers.unshift(1)
@@ -216,6 +237,7 @@ console.log(newNumbers); // [1, 2, 3, 4]
 To insert an item at index `i`, we slice the array into two parts: everything _before_ `i` and everything _after_ `i`. We then sandwich the new item in between.
 
 ```javascript
+// put "Green" at index 1 in the following array.
 const colors = ["Red", "Blue", "Yellow"];
 const indexToInsert = 1; // We want to insert 'Green' at index 1
 
@@ -238,6 +260,7 @@ Reading does not mutate arrays, so standard operations work fine.
 
 ```javascript
 const users = ["Alice", "Bob", "Charlie"];
+// access the first and the last element of the array.
 
 // Access by Index
 const firstUser = users[0];
@@ -246,6 +269,7 @@ const firstUser = users[0];
 const lastUser = users[users.length - 1];
 
 // Find specific item (using find method is safe as it doesn't mutate)
+
 const bob = users.find((user) => user === "Bob");
 ```
 
@@ -268,7 +292,8 @@ const updatedTasks = tasks.map((task, index) => {
   return task; // Keep unchanged
 });
 
-console.log(updatedTasks); // ['Task 1', 'Updated Task 2', 'Task 3']
+console.log(updatedTasks);
+// ['Task 1', 'Updated Task 2', 'Task 3']
 ```
 
 ### Update by Index (Using Spread & Slice)
@@ -278,6 +303,7 @@ Alternatively, you can reconstruct the array similar to the insertion method.
 ```javascript
 const items = ["A", "B", "C"];
 const index = 1;
+update the index 1 in items with "New B"
 
 const newItems = [
   ...items.slice(0, index), // Everything before target
@@ -285,7 +311,8 @@ const newItems = [
   ...items.slice(index + 1), // Everything after target
 ];
 
-console.log(newItems); // ['A', 'New B', 'C']
+console.log(newItems);
+// ['A', 'New B', 'C']
 ```
 
 ### Update Objects inside Arrays
@@ -298,7 +325,8 @@ const users = [
   { id: 2, name: "Jane" },
 ];
 
-// Update Jane's name to "Janet"
+// Update Jane's name to "Janet" with map method.
+
 const updatedUsers = users.map((user) =>
   user.id === 2 ? { ...user, name: "Janet" } : user,
 );
@@ -357,6 +385,7 @@ The most common way to remove an item is to filter out the value you don't want.
 const animals = ["Cat", "Dog", "Bird", "Dog"];
 
 // Remove all instances of 'Dog'
+
 const catsAndBirds = animals.filter((animal) => animal !== "Dog");
 
 console.log(catsAndBirds); // ['Cat', 'Bird']

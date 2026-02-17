@@ -31,6 +31,7 @@ const part1 = { a: 1 };
 const part2 = { b: 2 };
 
 // Combine them
+
 const combined = { ...part1, ...part2 };
 
 // Result: { a: 1, b: 2 }
@@ -52,6 +53,7 @@ const car = {
 };
 
 // Extract specific keys into variables
+
 const { brand, model } = car;
 
 console.log(brand); // 'Tesla'
